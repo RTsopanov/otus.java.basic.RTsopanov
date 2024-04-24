@@ -2,6 +2,9 @@ package hw3;
 
 import org.w3c.dom.ls.LSOutput;
 
+import java.sql.SQLOutput;
+import java.util.Arrays;
+
 public class MainApp {
     public static void main(String[] args) {
         int[][] arr = {{2, -5}, {5, 9}, {-11, 4}, {7, 0}};
@@ -12,33 +15,33 @@ public class MainApp {
 
 // 1 - Реализовать метод sumOfPositiveElements(..), принимающий в качестве аргумента целочисленный двумерный массив,
 //      метод должен посчитать и вернуть сумму всех элементов массива, которые больше 0;
-        System.out.println("Задание № 1");
-        sumOfPositiveElements(arr);
-        System.out.println();
+//        System.out.println("Задание № 1");
+//        sumOfPositiveElements(arr);
+//        System.out.println();
 
 // 2 - Реализовать метод, который принимает в качестве аргумента int size
 // и печатает в консоль квадрат из символов * со сторонами соответствующей длины;
-        System.out.println("Задание № 2");
-        squarePrint(5);
-        System.out.println();
+//        System.out.println("Задание № 2");
+//        squarePrint(5);
+//        System.out.println();
 
 // 3 - Реализовать метод, принимающий в качестве аргумента двумерный целочисленный массив,
 //       и зануляющий его диагональные элементы (можете выбрать любую из диагоналей, или занулить обе);
-        System.out.println("Задание № 3");
-        diagonalNull(arr2);
-        System.out.println();
+//        System.out.println("Задание № 3");
+//        diagonalNull(arr2);
+//        System.out.println();
 
 
 // 4 - Реализовать метод findMax(int[][] array) который должен найти и вернуть максимальный элемент массива;
-        System.out.println("Задание № 4");
-        findMax(arr2);
-        System.out.println();
+//        System.out.println("Задание № 4");
+//        findMax(arr2);
+//        System.out.println();
 
 // 5 - Реализуйте метод, который считает сумму элементов второй строки двумерного массива,
 //       если второй строки не существует, то в качестве результата необходимо вернуть -1
         System.out.println("Задание № 5");
-        sumTwoLine(arr2);
-
+        sumTwoLine(arr4);
+//
     }
 
 
@@ -60,17 +63,12 @@ public class MainApp {
 
     // 2
     public static void squarePrint(int size) {
-        char[][] square = new char[size][size];
-
-
-        for (int i = 0; i < square.length; i++) {
-            for (int j = 0; j < square[i].length; j++) {
-                square[i][j] = '*';
-                System.out.print(square[i][j] + "  ");
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                System.out.print('*' + " ");
             }
             System.out.println();
         }
-
     }
 
 
@@ -78,15 +76,21 @@ public class MainApp {
     //        ПОДСКАЖИТЕ, ПОЖАЛУЙСТА, ЕСТЬ СПОСОБ ЗАДАНИЕ №3 РЕШИТЬ БОЛЕЕ КОРОТКИМ(правильным) СПОСОБОМ ???
     //        пробовал через   Math.sqrt(x*x + y*y), но безуспешно
     public static void diagonalNull(int[][] array) {
+
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
+
+                int[][] arr = new int[array.length][array[i].length];
+                for (int k = 0; k < arr.length; k++) {
+                    for (int l = 0; l < arr[k].length; l++) {
+                        array[i][i] = 0;
+                    }
+                }
                 if (i + j == 4) {
-                    array[i][j] = 0;
+                    System.out.print(arr[i][j] + " ");
+                } else {
+                    System.out.print(array[i][j] + " ");
                 }
-                if (i == j) {
-                    array[i][j] = 0;
-                }
-                System.out.print(array[i][j] + " ");
             }
             System.out.println();
         }
@@ -112,18 +116,14 @@ public class MainApp {
 
     // 5
     public static int sumTwoLine(int[][] array) {
-
         int result = 0;
-
         for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array[i].length; j++) {
-                if (array.length < 2) {
-                    result = -1;
-                } else {
-                    result += array[2][j];
-                }
+            if (array.length >= 3) {
+                result += array[2][i];
             }
-            break;
+        }
+        if (result == 0) {
+            result = -1;
         }
         System.out.println(result);
         return result;
