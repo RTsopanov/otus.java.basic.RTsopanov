@@ -33,10 +33,13 @@ public class MainApp {
 
 
 // 5
-            Box box1 = new Box(10, 15, 25, "Синий", "Открыть", "Мяч");
+            Box box1 = new Box(10, 15, 25, "Синий", true, "Мяч");
             box1.info();
             box1.getBox();
-            System.out.println(); }
+            System.out.println();
+//            box1.put();
+
+        }
 
 }
 

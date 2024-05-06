@@ -5,11 +5,11 @@ public class Box {
     private int height;
     private int width;
     private String color;
-    private String lid;
     private String item;
+    boolean lid = true;
 
 
-    public Box(int length, int height, int width, String color, String lid, String item) {
+    public Box(int length, int height, int width, String color, boolean lid, String item) {
         this.length = length;
         this.height = height;
         this.width = width;
@@ -17,7 +17,8 @@ public class Box {
         this.lid = lid;
         this.item = item;
     }
-    public Box(int length, int height, int width, String color, String lid) {
+
+    public Box(int length, int height, int width, String color, boolean lid) {
         this.length = length;
         this.height = height;
         this.width = width;
@@ -41,10 +42,11 @@ public class Box {
         return color;
     }
 
-    public String getLid() {
+    public boolean getLid() {
         return lid;
     }
-    public String getItem(){
+
+    public String getItem() {
         return item;
     }
 
@@ -52,47 +54,52 @@ public class Box {
     public void setColor(String color) {
         this.color = color;
     }
-    public void setLid(String lid) {
-        if (lid.equals("Открыть") || lid.equals("Закрыть"))
+
+    public void setLid(boolean lid) {
+        if (lid == true || lid == false)
             this.lid = lid;
     }
-    public void setItem(String item){
-        if(item.equals(null))
-        this.item = item;
+
+
+
+    public void put() {
+        if (item.equals(null)) {
+            this.item = item;
+        }
+        else {
+            System.out.println("В коробке лежит " + item + ".  Места больше нет!" );
+        }
+
     }
 
 
     public void info() {
         System.out.println("Размер коробки: " + length + "*" + height + "*" + width);
         System.out.println("Цвет: " + color);
-        if (lid.equals("Открыть")) {
+        if (lid == true) {
             System.out.println("Крышка открыта");
         } else {
             System.out.println("Крышка закрыта");
         }
-        if(item != null){
+        if (item != null) {
             System.out.println("В коробке лежит " + item);
-        }
-        else{
+        } else {
             System.out.println("В коробке ничего нет!");
         }
     }
 
-    public void getBox(){
-        if (item != null && lid.equals("Открыть")){
-            System.out.println("Вы взяли из коробки " + item + " Коробка пуста!");
-            item = null;}
-            if(item == null){
-                System.out.println("Из коробки нечего взять, т.к. коробка пуста!");
-            }
-            if(!lid.equals("Открыть")){
-                System.out.println("Тебе не достать, крышка закрыта☺");
-            }
-
-
+    public void getBox() {
+        if (item != null && lid == true) {
+            System.out.println("Вы взяли из коробки " + item + ". Коробка пуста!");
+            item = null;
+        }
+        else if (item == null) {
+            System.out.println("Из коробки нечего взять, т.к. коробка пуста!");
+        }
+        if (lid != true) {
+            System.out.println("Тебе не достать, крышка закрыта☺");
+        }
     }
 
-//    public void putBox(){
-//        if(){}
-//    }
+
 }
