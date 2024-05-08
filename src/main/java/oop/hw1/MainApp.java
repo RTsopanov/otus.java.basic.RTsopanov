@@ -33,9 +33,9 @@ public class MainApp {
 
 
 // 5
-            Box box1 = new Box(10, 15, 25, "Синий", true, "Мяч");
+            Box box1 = new Box(10, 15, 25, "Синий", false, "Мяч");
             box1.info();
-            box1.getBox();
+            box1.takeItem();
             System.out.println();
 //            box1.put();
 

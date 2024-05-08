@@ -6,24 +6,24 @@ public class Box {
     private int width;
     private String color;
     private String item;
-    boolean lid = true;
+    private boolean isOpened  = true;
 
 
-    public Box(int length, int height, int width, String color, boolean lid, String item) {
+    public Box(int length, int height, int width, String color, boolean isOpened , String item) {
         this.length = length;
         this.height = height;
         this.width = width;
         this.color = color;
-        this.lid = lid;
+        this.isOpened  = isOpened ;
         this.item = item;
     }
 
-    public Box(int length, int height, int width, String color, boolean lid) {
+    public Box(int length, int height, int width, String color, boolean isOpened ) {
         this.length = length;
         this.height = height;
         this.width = width;
         this.color = color;
-        this.lid = lid;
+        this.isOpened  = isOpened ;
     }
 
     public int getLength() {
@@ -43,7 +43,7 @@ public class Box {
     }
 
     public boolean getLid() {
-        return lid;
+        return isOpened ;
     }
 
     public String getItem() {
@@ -51,19 +51,21 @@ public class Box {
     }
 
 
+
+
     public void setColor(String color) {
         this.color = color;
     }
 
-    public void setLid(boolean lid) {
-        if (lid == true || lid == false)
-            this.lid = lid;
+    public void setisOpened (boolean isOpened ) {
+        if (isOpened  == true || isOpened  == false)
+            this.isOpened  = isOpened ;
     }
 
 
 
     public void put() {
-        if (item.equals(null)) {
+        if (item == null) {
             this.item = item;
         }
         else {
@@ -76,7 +78,7 @@ public class Box {
     public void info() {
         System.out.println("Размер коробки: " + length + "*" + height + "*" + width);
         System.out.println("Цвет: " + color);
-        if (lid == true) {
+        if (isOpened  == true) {
             System.out.println("Крышка открыта");
         } else {
             System.out.println("Крышка закрыта");
@@ -88,15 +90,15 @@ public class Box {
         }
     }
 
-    public void getBox() {
-        if (item != null && lid == true) {
+    public void takeItem() {
+        if (item != null && isOpened) {
             System.out.println("Вы взяли из коробки " + item + ". Коробка пуста!");
             item = null;
         }
         else if (item == null) {
             System.out.println("Из коробки нечего взять, т.к. коробка пуста!");
         }
-        if (lid != true) {
+        if (!isOpened ) {
             System.out.println("Тебе не достать, крышка закрыта☺");
         }
     }
