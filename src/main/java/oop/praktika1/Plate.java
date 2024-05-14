@@ -59,13 +59,30 @@ public class Plate {
     }
 
 
-    public void addFood(int a) {
-        if (a > volumePlate || (nowFoodAmount + a) > volumePlate) {
-            nowFoodAmount = volumePlate;
-            System.out.println("Миска полная. \nВся еда не поместилась в миску. У вас осталось " + (a - maxFoodAmmount) + " еды");
-        } else {
-            nowFoodAmount = nowFoodAmount + a;
-            System.out.println("В миске " + nowFoodAmount + " еды");
+    public void addFood(Cat[] cats) {
+        if (decreaseFood) {
+            for (int i = 0; i < cats.length; i++) {
+
+                if (nowFoodAmount <= 0) {
+                    System.out.println("В миске нет еды, " + cats[i].getName() + " остался голодный");
+                    decreaseFood = false;
+                } else if (nowFoodAmount == cats[i].getAppetite()) {
+                    nowFoodAmount = (nowFoodAmount - cats[i].getAppetite());
+                    System.out.println(cats[i].getName() + " сытый" + "\nВ миске закончилась еда");
+                    cats[i].setWellFed(true);
+                    decreaseFood = false;
+                } else if (nowFoodAmount < cats[i].getAppetite()) {
+                    System.out.println("В миске мало еды. " + cats[i].getName() + " остался голодный");
+                    decreaseFood = false;
+                } else {
+                    nowFoodAmount = nowFoodAmount - cats[i].getAppetite();
+                    System.out.println(cats[i].getName() + " сытый");
+                    cats[i].setWellFed(true);
+                    decreaseFood = false;
+
+                }
+            }
+
         }
     }
 
