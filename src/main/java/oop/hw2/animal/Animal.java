@@ -1,4 +1,4 @@
-package oop.hw2.Animal;
+package oop.hw2.animal;
 
 public abstract class Animal {
     String name;
@@ -70,9 +70,13 @@ public abstract class Animal {
     public abstract void swim(int distance);
 
 
-    public void info(){
-        System.out.println("Имя: " + name + "\nСкорость бега: " + speedRun +
-                "\nСкорость плавания: " + speedSwimming   + "\nВыносливость: " + endurance);
-    }
 
+    public void info(){
+        System.out.println("Имя: " + name + "\nСкорость бега: " + speedRun + "\nСкорость плавания: " + speedSwimming);
+        if(endurance == 0){
+            System.out.println(name + " устал");
+        } else {
+            System.out.println("Выносливость: " + endurance);
+        }
+    }
 }

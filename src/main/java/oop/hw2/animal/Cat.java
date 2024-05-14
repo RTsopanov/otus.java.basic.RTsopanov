@@ -1,4 +1,4 @@
-package oop.hw2.Animal;
+package oop.hw2.animal;
 
 public class Cat extends Animal{
         public Cat(String name, int speedRun, int endurance){
