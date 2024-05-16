@@ -1,29 +1,31 @@
 package oop.praktika1;
 
 public class Main {
-
-
     public static void main(String[] args) {
 
-        Plate plate1 = new Plate(1, 31);
+//        Cat cat1 = new Cat("Riha", 16);
 
 
-
-        Cat cat1 = new Cat("Barsik", 9);
-
+        Plate plate1 = new Plate(20);
         Cat[] cats = {
-                new Cat("Barsik", 9),
-                new Cat("Bosya", 12),
-                new Cat("Chainik", 10)};
+                new Cat("Riha", 21),
+                new Cat("Bosya", 5),
+                new Cat("Ioska", 7)
+        };
 
 
-        plate1.info();
+        System.out.println(plate1);
         System.out.println();
 
-        plate1.addFood(cats);
+
+        for (int i = 0; i < cats.length; i++) {
+            cats[i].eat(plate1);
+        }
+
 
         System.out.println();
-        plate1.info();
+        System.out.println(plate1);
+//        plate1.info();
 
     }
 }
