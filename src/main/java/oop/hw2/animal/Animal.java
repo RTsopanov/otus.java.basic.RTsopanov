@@ -51,32 +51,29 @@ public abstract class Animal {
     }
 
 
-    public void run(int distance){
+    public int run(int distance){
         int time;
         endurance = endurance - distance;
         if(endurance == 0 || endurance < 0){
             endurance = 0;
             time = -1;
             System.out.println(name + " устал" + "\nВремя: " + time);
+
         }
         else{
             time = distance / speedRun;
             System.out.println("Затраченное время на бег: " + time + "\nВыносливость: " + endurance);
         }
+        return time;
 
     }
 
 
-    public abstract void swim(int distance);
+    public abstract int swim(int distance);
 
 
 
     public void info(){
-        System.out.println("Имя: " + name + "\nСкорость бега: " + speedRun + "\nСкорость плавания: " + speedSwimming);
-        if(endurance == 0){
-            System.out.println(name + " устал");
-        } else {
-            System.out.println("Выносливость: " + endurance);
-        }
+        System.out.println("Имя: " + name + "\nСкорость бега: " + speedRun + "\nСкорость плавания: " + speedSwimming + "Выносливость: " + endurance);
     }
 }

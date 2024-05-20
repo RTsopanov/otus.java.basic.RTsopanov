@@ -5,7 +5,7 @@ public class Dog extends Animal {
         super(name, speedRun, speedSwimming, endurance);
     }
 
-    public void swim(int distance) {
+    public int swim(int distance) {
         int time;
         endurance = endurance - distance * 2;
         if (endurance == 0 || endurance < 0) {
@@ -16,5 +16,6 @@ public class Dog extends Animal {
             time = distance / speedSwimming;
             System.out.println("Затраченное время на плавание: " + time + "\nВыносливость: " + endurance);
         }
+        return time;
     }
 }
