@@ -40,17 +40,10 @@ public class Cat {
 
 
     public void eat(Plate plate) {
-        if (!wellFed) {
-            if (!plate.getTake()) {
-                plate.takeAmount(appetite);
-                System.out.println(name + " остался голодный.");
-            } else {
-                plate.takeAmount(appetite);
-                System.out.println(name + " сытый.");
-                wellFed = true;
-            }
-        }
-
+        if (plate.takeAmount(appetite)) {
+            System.out.println(name + " сытый.");
+            wellFed = true;
+        } else
+            System.out.println(name + " остался голодный.");
     }
-
 }
