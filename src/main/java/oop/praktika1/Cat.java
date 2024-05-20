@@ -6,7 +6,6 @@ public class Cat {
     private boolean wellFed;
 
 
-    //CONSTRUCTOR
     public Cat(String name, int appetite) {
         this.name = name;
         this.appetite = appetite;
@@ -14,7 +13,6 @@ public class Cat {
     }
 
 
-    //GETTER
     public String getName() {
         return name;
     }
@@ -27,7 +25,7 @@ public class Cat {
         return wellFed;
     }
 
-    //SETTER
+
     public void setName(String name) {
         this.name = name;
     }
@@ -43,18 +41,11 @@ public class Cat {
 
     public void eat(Plate plate) {
         if (!wellFed) {
-
-            if (plate.getNowFood() == appetite) {
-                plate.take(appetite);
-                System.out.println(name + " сытый.");
-                wellFed = true;
-
-            } else if (plate.getNowFood() < appetite || plate.getNowFood() <= 0) {
-                plate.take(appetite);
+            if (!plate.getTake()) {
+                plate.takeAmount(appetite);
                 System.out.println(name + " остался голодный.");
-
             } else {
-                plate.take(appetite);
+                plate.takeAmount(appetite);
                 System.out.println(name + " сытый.");
                 wellFed = true;
             }

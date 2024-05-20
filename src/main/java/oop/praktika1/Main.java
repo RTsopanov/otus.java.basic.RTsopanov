@@ -14,6 +14,17 @@ public class Main {
         };
 
 
+//        plate1.takeAmount(20);
+//        System.out.println("takeAmount");
+//        System.out.println(plate1);
+//        System.out.println();
+//        System.out.println(plate1);
+//        System.out.println();
+//        plate1.addAmount(-5);
+//        System.out.println();
+//        System.out.println(plate1);
+
+
         System.out.println(plate1);
         System.out.println();
 
@@ -21,6 +32,9 @@ public class Main {
         for (int i = 0; i < cats.length; i++) {
             cats[i].eat(plate1);
         }
+
+
+
 
 
         System.out.println();

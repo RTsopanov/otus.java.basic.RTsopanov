@@ -2,33 +2,35 @@ package oop.praktika1;
 
 
 public class Plate {
-    private int maxFood;
-    private int nowFood;
+    private int maxCurrentAmount;
+    private int currentAmount;
     private int volume;
     private boolean take;
 
 
-    //GETTER
     public int getFoodMsx() {
-        return maxFood;
+        return maxCurrentAmount;
     }
 
-    public int getNowFood() {
-        return nowFood;
+    public int getCurrentAmount() {
+        return currentAmount;
     }
 
     public int getVolume() {
         return volume;
     }
 
-
-    //SETTER
-    public void setMaxFood(int maxFood) {
-        this.maxFood = maxFood;
+    public boolean getTake() {
+        return take;
     }
 
-    public void setNowFood(int nowFood) {
-        this.nowFood = nowFood;
+
+    public void setMaxCurrentAmount(int maxCurrentAmount) {
+        this.maxCurrentAmount = maxCurrentAmount;
+    }
+
+    public void setCurrentAmount(int currentAmount) {
+        this.currentAmount = currentAmount;
     }
 
     public void setVolume(int volume) {
@@ -36,48 +38,41 @@ public class Plate {
     }
 
 
-    //CONSTRUCTOR
     public Plate(int volume) {
         this.volume = volume;
-        this.maxFood = volume;
-        this.nowFood = maxFood;
+        this.maxCurrentAmount = volume;
+        this.currentAmount = maxCurrentAmount;
         this.take = true;
     }
 
 
-    public void add(int a) {
-        if (a > maxFood || (a + nowFood) > maxFood) {
-            nowFood = maxFood;
+    public void addAmount(int a) {
+        if (a > maxCurrentAmount || (a + currentAmount) > maxCurrentAmount) {
+            currentAmount = maxCurrentAmount;
             System.out.println("Вся еда не поместилась в миску");
-        }
+        } else if (a <= maxCurrentAmount && a >= 0) {
+            currentAmount = currentAmount + a;
+            System.out.println("Вся еда поместилась в миску");
+        } else System.out.println("Ошибка! Укажите количество еды корректно!");
     }
 
 
-    public boolean take(int a) {
+    public boolean takeAmount(int a) {
         if (take) {
-            if (nowFood == a) {
-                nowFood = nowFood - a;
-                System.out.println("В миске закончилась еда");
-                return take = false;
-            } else if (nowFood <= 0) {
-                nowFood = 0;
-                System.out.println("В миске нет еды!");
-                return take = false;
-            } else if (nowFood < a) {
-                System.out.println("В миске не достаточно еды!");
-                return take = false;
-            } else {
-                nowFood = nowFood - a;
+            if (currentAmount > 0 && currentAmount >= a) {
+                currentAmount = currentAmount - a;
+                return take = true;
+
             }
         }
-        return take = true;
+        return take = false;
     }
 
 
     @Override
     public String toString() {
-        return "Объем миски: " + volume + "\nМаксимальное кол-во еды: " + maxFood +
-                "\nТекущее кол-во еды: " + nowFood;
+        return "Объем миски: " + volume + "\nМаксимальное кол-во еды: " + maxCurrentAmount +
+                "\nТекущее кол-во еды: " + currentAmount;
     }
 
 
