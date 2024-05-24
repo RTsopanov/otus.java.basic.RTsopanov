@@ -10,8 +10,8 @@ public class Main {
         char[][] arr3 = {{'1', '2', '3', '4'}, {'5', '6', '7', '8'}, {'1', '2', '3', '4'}, {'5', '6', '7', '8'}};
 
         try {
-            array(arr1);
-//            array(arr2);
+//            array(arr1);
+            array(arr2);
 //            array(arr3);
         } catch (AppArraySizeException | AppArrayDataException e) {
             e.printStackTrace();
@@ -33,8 +33,11 @@ public class Main {
                 try {
                     a = Integer.parseInt(String.valueOf(arr[i][j]));
                     sum += a;
-                } catch (RuntimeException e) {
+                } catch (NumberFormatException e) {
+                    System.out.println("Строка: " + i + "\nСтолбец: " + j + "\nЗначение: " + arr[i][j]);
+//                    e.printStackTrace();
                     throw new AppArrayDataException();
+
                 }
             }
         }
