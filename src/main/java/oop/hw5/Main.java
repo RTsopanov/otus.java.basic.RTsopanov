@@ -3,7 +3,6 @@ package oop.hw5;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.ListIterator;
 
 
 public class Main {
@@ -23,39 +22,38 @@ public class Main {
         List<Integer> line = new ArrayList<>(Arrays.asList(1, 10, 7, 5, 11, 4, 8, 6));
 
 
-        num(5, 10);
-        sumList(line);
-        rewrite(8, line);
-        rewriteTwo(2, line);
-
-
-        System.out.println(employees);
-        System.out.println();
-
-        employ(employees);
-        employ1(27, employees);
-        employ2(28, employees);
-        employ3(employees);
+//        System.out.println(num(4, 12));
+//        System.out.println(sumList(line));
+//        rewrite(8, line);
+//        rewriteTwo(2, line);
+//
+//
+//        System.out.println(employees);
+//        System.out.println();
+//
+//        employ(employees);
+//        employ1(27, employees);
+//        employ2(28, employees);
+        System.out.println(employ3(employees));
     }
 
 
-    public static void num(int min, int max) {
+    public static List num(int min, int max) {
         List<Integer> array = new ArrayList<>();
-        array.add(0, min);
-        array.add(array.size() - 1, max);
         for (int i = min; i <= max; i++) {
-            System.out.println(i);
+            array.add(i);
         }
+        return array;
     }
 
-    public static void sumList(List<Integer> arr) {
+    public static int sumList(List<Integer> arr) {
         int sum = 0;
         for (int i = 0; i < arr.size(); i++) {
             if (arr.get(i) > 5) {
                 sum += arr.get(i);
             }
         }
-        System.out.println("sum = " + sum);
+        return sum;
     }
 
 
@@ -112,23 +110,17 @@ public class Main {
     }
 
 
-    public static int employ3(List<Employee> arr) {
+    public static List<Employee> employ3(List<Employee> arr) {
+        List<Employee> employ = new ArrayList<>();
+        int num = arr.get(0).getAge();
 
-        int num = 0;
-        int index = 0;
-//        String name = "";
-        for (int i = 0; i < arr.size(); i++) {
-            num = arr.get(0).getAge();
-//            name = arr.get(0).getName();
-
-            if (num > arr.get(i).getAge()) {
-                num = arr.get(i).getAge();
-//                name = arr.get(i).getName();
-                index = i;
+        for (Employee emp : arr) {
+            if (emp.getAge() < num) {
+                num = emp.getAge();
+                employ.add(emp);
             }
         }
-        System.out.println("Индекс самого молого сотрудника " + index);
-        return index;
+        return employ;
     }
 
 
