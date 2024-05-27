@@ -24,93 +24,90 @@ public class Main {
 
 //        System.out.println(num(4, 12));
 //        System.out.println(sumList(line));
-//        rewrite(8, line);
-//        rewriteTwo(2, line);
+//        System.out.println(rewrite(8, line));
+//        System.out.println(rewriteTwo(2, line));
 //
 //
-//        System.out.println(employees);
-//        System.out.println();
-//
-//        employ(employees);
-//        employ1(27, employees);
-//        employ2(28, employees);
-        System.out.println(employ3(employees));
+
+//        System.out.println(employ(employees));
+//        System.out.println(employOne(27, employees));
+        System.out.println(employTwo(27, employees));
+//        System.out.println(employThree(employees));
+
     }
 
 
     public static List num(int min, int max) {
-        List<Integer> array = new ArrayList<>();
+             List<Integer> array = new ArrayList<>();
         for (int i = min; i <= max; i++) {
             array.add(i);
         }
         return array;
     }
 
+
     public static int sumList(List<Integer> arr) {
         int sum = 0;
-        for (int i = 0; i < arr.size(); i++) {
-            if (arr.get(i) > 5) {
-                sum += arr.get(i);
+        for (Integer i : arr) {
+            if (i > 5) {
+                sum += i;
             }
         }
         return sum;
     }
 
 
-    public static void rewrite(int num, List<Integer> arr) {
+    public static boolean rewrite(int num, List<Integer> arr) {
         for (int i = 0; i < arr.size(); i++) {
             arr.set(i, num);
         }
-        System.out.println(arr);
+        return true;
     }
 
 
-    public static void rewriteTwo(int num, List<Integer> arr) {
+    public static boolean rewriteTwo(int num, List<Integer> arr) {
         for (int i = 0; i < arr.size(); i++) {
             arr.set(i, arr.get(i) + num);
         }
-        System.out.println(arr);
+       return true;
     }
 
-    public static void employ(List<Employee> arr) {
+
+    public static List<String> employ(List<Employee> arr) {
         List<String> user = new ArrayList<>();
         for (Employee empe : arr) {
             user.add(empe.getName());
         }
-        System.out.println(user);
+        return user;
     }
 
 
-    public static void employ1(int minAge, List<Employee> arr) {
-        List<String> user = new ArrayList<>();
+
+    public static List<Employee> employOne(int minAge, List<Employee> arr) {
+        List<Employee> user = new ArrayList<>();
         for (Employee empe : arr) {
-            if (empe.getAge() <= minAge) {
-                user.add(empe.getName() + " " + empe.getAge());
+            if (empe.getAge() >= minAge) {
+                user.add(empe);
             }
         }
-        System.out.println(user);
+        return user;
     }
 
 
-    public static void employ2(int minAge, List<Employee> arr) {
-        int count = 0;
+    public static boolean employTwo(int minAge, List<Employee> arr) {
         int sumAge = 0;
-        int avg;
+        int avgAge;
         for (Employee empe : arr) {
-            count++;
-            sumAge += empe.getAge();
+            sumAge += empe.getAge() ;
         }
-        avg = sumAge / count;
-        if (avg > minAge) {
-            System.out.println(avg + " > " + minAge + "\nСредний возраст сотрудников больше, минмального среднего возраста.");
-        } else if (avg == minAge) {
-            System.out.println(avg + " = " + minAge + "\nСредний возраст сотрудников равен, минмальному среднему возрасту.");
-        } else
-            System.out.println(avg + " < " + minAge + "\nСредний возраст сотрудников меньше, минмального среднего возраста.");
+        avgAge = sumAge / arr.size();
+        if (avgAge > minAge) {
+            return true;
+        } return false;
     }
 
 
-    public static List<Employee> employ3(List<Employee> arr) {
+    public static List<Employee> employThree(List<Employee> arr) {
         List<Employee> employ = new ArrayList<>();
         int num = arr.get(0).getAge();
 
