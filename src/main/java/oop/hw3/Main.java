@@ -16,11 +16,16 @@ public class Main {
 
 
 
-//        Human[] humans = {human1, human2, human3, human4, human5};
-//
-//        for (int i = 0; i < humans.length; i++) {
-//            humans[i].inTransport();
+        Human[] humans = {human1, human2, human3, human4, human5};
+
+//        for (Human hum : humans) {
+//            hum
 //        }
+
+
+        for (int i = 0; i < humans.length; i++) {
+            humans[i].inTransport();
+        }
 
 
 

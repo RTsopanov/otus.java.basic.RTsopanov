@@ -1,8 +1,11 @@
 package oop.hw3;
 
-public class Human extends Car {
-     static String name;
-    private static String currentTransport;
+import static oop.hw3.Transport.distance;
+
+
+public class Human  {
+      String name;
+    private  String currentTransport;
 
     static int strength = 100;
 
@@ -38,17 +41,17 @@ public class Human extends Car {
     }
 
 
-    public static void inTransport() {
+    public  void inTransport() {
 
-        if (Human.currentTransport.equals("car")) {
+        if (currentTransport.equals("car")) {
             Car.distance("field", 100);
-        } else if (Human.currentTransport.equals("vezdehod")) {
+        } else if (currentTransport.equals("vezdehod")) {
             Vezdehod.distance("swamp", 100);
-        } else if (Human.currentTransport.equals("horse")) {
+        } else if (currentTransport.equals("horse")) {
             Horse.distance("forest", 100);
-        } else if (Human.currentTransport.equals("bike")) {
+        } else if (currentTransport.equals("bike")) {
             Bike.distance("swamp", 100);
-        } else if (Human.currentTransport.equals("null")) {
+        } else if (currentTransport.equals("null")) {
             System.out.println(name + " пошел пешком.");
         }
     }
