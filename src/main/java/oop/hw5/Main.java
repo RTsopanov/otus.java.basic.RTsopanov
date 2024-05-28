@@ -22,17 +22,15 @@ public class Main {
         List<Integer> line = new ArrayList<>(Arrays.asList(1, 10, 7, 5, 11, 4, 8, 6));
 
 
-//        System.out.println(num(4, 12));
-//        System.out.println(sumList(line));
-//        System.out.println(rewrite(8, line));
-//        System.out.println(rewriteTwo(2, line));
-//
-//
+        System.out.println(num(4, 12));
+        System.out.println(sumList(line));
+        System.out.println(rewriteList(8, line));
+        System.out.println(increaseNumber(2, line));
 
-//        System.out.println(employ(employees));
-//        System.out.println(employOne(27, employees));
-        System.out.println(employTwo(27, employees));
-//        System.out.println(employThree(employees));
+        System.out.println(returnListName(employees));
+        System.out.println(returnListNameTwo(27, employees));
+        System.out.println(averageAge(27, employees));
+        System.out.println(minAge(employees));
 
     }
 
@@ -57,7 +55,7 @@ public class Main {
     }
 
 
-    public static boolean rewrite(int num, List<Integer> arr) {
+    public static boolean rewriteList(int num, List<Integer> arr) {
         for (int i = 0; i < arr.size(); i++) {
             arr.set(i, num);
         }
@@ -65,7 +63,7 @@ public class Main {
     }
 
 
-    public static boolean rewriteTwo(int num, List<Integer> arr) {
+    public static boolean increaseNumber(int num, List<Integer> arr) {
         for (int i = 0; i < arr.size(); i++) {
             arr.set(i, arr.get(i) + num);
         }
@@ -73,7 +71,7 @@ public class Main {
     }
 
 
-    public static List<String> employ(List<Employee> arr) {
+    public static List<String> returnListName(List<Employee> arr) {
         List<String> user = new ArrayList<>();
         for (Employee empe : arr) {
             user.add(empe.getName());
@@ -83,7 +81,7 @@ public class Main {
 
 
 
-    public static List<Employee> employOne(int minAge, List<Employee> arr) {
+    public static List<Employee> returnListNameTwo(int minAge, List<Employee> arr) {
         List<Employee> user = new ArrayList<>();
         for (Employee empe : arr) {
             if (empe.getAge() >= minAge) {
@@ -94,7 +92,7 @@ public class Main {
     }
 
 
-    public static boolean employTwo(int minAge, List<Employee> arr) {
+    public static boolean averageAge(int minAge, List<Employee> arr) {
         int sumAge = 0;
         int avgAge;
         for (Employee empe : arr) {
@@ -107,17 +105,17 @@ public class Main {
     }
 
 
-    public static List<Employee> employThree(List<Employee> arr) {
-        List<Employee> employ = new ArrayList<>();
+    public static String minAge(List<Employee> arr) {
+        String name = "";
         int num = arr.get(0).getAge();
 
         for (Employee emp : arr) {
             if (emp.getAge() < num) {
                 num = emp.getAge();
-                employ.add(emp);
+                name = emp.getName();
             }
         }
-        return employ;
+        return name;
     }
 
 
