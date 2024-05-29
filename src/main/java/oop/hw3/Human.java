@@ -44,13 +44,21 @@ public class Human {
 
         if (currentTransport.equals("car")) {
             Car.distance("field", data.DISTANCE.getNum());
-        } else if (currentTransport.equals("vezdehod")) {
+        }
+
+        else if (currentTransport.equals("vezdehod")) {
             Vezdehod.distance("swamp", data.DISTANCE.getNum());
-        } else if (currentTransport.equals("horse")) {
+        }
+
+        else if (currentTransport.equals("horse")) {
             Horse.distance("forest", data.DISTANCE.getNum());
-        } else if (currentTransport.equals("bike")) {
+        }
+
+        else if (currentTransport.equals("bike")) {
             Bike.distance("swamp", data.DISTANCE.getNum());
-        } else if (currentTransport.equals("null")) {
+        }
+
+        else if (currentTransport.equals("null")) {
             System.out.println(name + " пошел пешком.");
         }
     }
