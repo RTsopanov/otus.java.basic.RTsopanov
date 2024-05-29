@@ -105,17 +105,16 @@ public class Main {
     }
 
 
-    public static String minAge(List<Employee> arr) {
-        String name = "";
+    public static Employee minAge(List<Employee> arr) {
         int num = arr.get(0).getAge();
-
+        Employee empResult = arr.get(0);
         for (Employee emp : arr) {
             if (emp.getAge() < num) {
                 num = emp.getAge();
-                name = emp.getName();
+                 empResult = emp;
             }
         }
-        return name;
+        return empResult;
     }
 
 
