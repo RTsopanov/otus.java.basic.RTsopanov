@@ -1,13 +1,12 @@
 package oop.hw3;
 
-import static oop.hw3.Transport.distance;
 
-
-public class Human  {
+public class Human {
       String name;
     private  String currentTransport;
 
-    static int strength = 100;
+
+
 
 
     public Human(String name, String currentTransport) {
@@ -44,13 +43,13 @@ public class Human  {
     public  void inTransport() {
 
         if (currentTransport.equals("car")) {
-            Car.distance("field", 100);
+            Car.distance("field", data.DISTANCE.getNum());
         } else if (currentTransport.equals("vezdehod")) {
-            Vezdehod.distance("swamp", 100);
+            Vezdehod.distance("swamp", data.DISTANCE.getNum());
         } else if (currentTransport.equals("horse")) {
-            Horse.distance("forest", 100);
+            Horse.distance("forest", data.DISTANCE.getNum());
         } else if (currentTransport.equals("bike")) {
-            Bike.distance("swamp", 100);
+            Bike.distance("swamp", data.DISTANCE.getNum());
         } else if (currentTransport.equals("null")) {
             System.out.println(name + " пошел пешком.");
         }
