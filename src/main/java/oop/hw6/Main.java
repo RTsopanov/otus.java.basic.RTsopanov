@@ -19,16 +19,16 @@ public class Main {
 
 
 
-        System.out.println();
-
+//        System.out.println();
+//
         add("Антон Чехов",   "+7-999-999-99-99");
         System.out.println();
-
-        add("Берия Лаврентий", "+7-999-698-11-11");
-        System.out.println();
-
-        find("Берия Лаврентий");
-        System.out.println();
+//
+//        add("Берия Лаврентий", "+7-999-698-11-11");
+//        System.out.println();
+//
+//        find("Берия Лаврентий");
+//        System.out.println();
 
         System.out.println(containsPhoneNumber("+7-999-999-99-99"));
 
