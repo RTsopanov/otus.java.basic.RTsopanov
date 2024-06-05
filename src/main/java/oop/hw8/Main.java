@@ -1,6 +1,9 @@
 package oop.hw8;
 
 import java.io.*;
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
@@ -14,10 +17,13 @@ public class Main {
 
 
     public static void allFile() {
-        String prth = "C:\\Users\\User\\Desktop\\JAVA\\OTUS\\otus.java.basic.RTsopanov\\test";
-        File fileList = new File(prth);
-        File[] file1 = fileList.listFiles();
-        for (File file : file1) {
+
+        File path  = new File ("src\\main", "test");
+        File directory = new File(String.valueOf(path));
+        File[] fileList = directory.listFiles();
+
+
+       for (File file : fileList) {
             System.out.println(file.getName());
         }
 
@@ -34,8 +40,11 @@ public class Main {
         System.out.println("Введите имя файла для работы с ним. \n");
 
 
-        String nameFile = "C:\\Users\\User\\Desktop\\JAVA\\OTUS\\otus.java.basic.RTsopanov\\test\\" + scanner.nextLine();
-        try (BufferedInputStream buff = new BufferedInputStream(new FileInputStream(nameFile));
+        File path  = new File ("src\\main\\test", scanner.nextLine());
+        File directory = new File(String.valueOf(path));
+
+
+        try (BufferedInputStream buff = new BufferedInputStream(new FileInputStream(directory));
              InputStreamReader in = new InputStreamReader(buff, StandardCharsets.UTF_8)) {
             int n = in.read();
             while (n > 0) {
@@ -51,7 +60,7 @@ public class Main {
 
         System.out.println("\n\nВведите текст для добавления в файл");
         String newLine = "\n" + scanner.nextLine();
-        try (BufferedOutputStream buff = new BufferedOutputStream(new FileOutputStream(nameFile, true))) {
+        try (BufferedOutputStream buff = new BufferedOutputStream(new FileOutputStream(directory, true))) {
             byte[] bytes = newLine.getBytes(StandardCharsets.UTF_8);
             buff.write(bytes);
         } catch (IOException e) {
@@ -60,7 +69,7 @@ public class Main {
 
 
 
-        try (BufferedInputStream buff = new BufferedInputStream(new FileInputStream(nameFile));
+        try (BufferedInputStream buff = new BufferedInputStream(new FileInputStream(directory));
              InputStreamReader in = new InputStreamReader(buff, StandardCharsets.UTF_8)) {
             int n = in.read();
             while (n > 0) {
