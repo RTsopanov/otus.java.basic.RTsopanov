@@ -10,47 +10,39 @@ public class Main {
     public static void main(String[] args) {
 
 
-        ArrayList<PersonDataBase> list1 = new ArrayList<>(Arrays.asList(
-                new PersonDataBase ("Robert", 32l, MANAGER),
-                new PersonDataBase("Vasy", 19l, DIRECTOR),
-                new PersonDataBase("Boss", 23l, DRIVER),
-                new PersonDataBase("Riha", 27l, ENGINEER),
-                new PersonDataBase("Sany", 26l, SENIOR_MANAGER),
-                new PersonDataBase("Andrey", 41l, DEVELOPER),
-                new PersonDataBase("Anton", 37l, QA),
-                new PersonDataBase("Oleg", 28l, JANITOR),
-                new PersonDataBase("Stepan", 36l, BRANCH_DIRECTOR),
-                new PersonDataBase("Ivan", 22l, JUNIOR_DEVELOPER)));
-
-
-        LinkedList<PersonDataBase> list2 = new LinkedList<>(Arrays.asList(
-                new PersonDataBase ("Robert", 32l, MANAGER),
-                new PersonDataBase("Vasy", 19l, DIRECTOR),
-                new PersonDataBase("Boss", 23l, DRIVER),
-                new PersonDataBase("Riha", 27l, ENGINEER),
-                new PersonDataBase("Sany", 26l, SENIOR_MANAGER),
-                new PersonDataBase("Andrey", 41l, DEVELOPER),
-                new PersonDataBase("Anton", 37l, QA),
-                new PersonDataBase("Oleg", 28l, JANITOR),
-                new PersonDataBase("Stepan", 36l, BRANCH_DIRECTOR),
-                new PersonDataBase("Ivan", 22l, JUNIOR_DEVELOPER)));
+//        ArrayList<Person> list = new ArrayList<>(Arrays.asList(
+//                new Person (0, "Robert", MANAGER),
+//                new Person(1, "Vasy", DIRECTOR),
+//                new Person(2, "Boss", DRIVER),
+//                new Person(3, "Riha", ENGINEER),
+//                new Person(4, "Sany", SENIOR_MANAGER),
+//                new Person(5, "Andrey", DEVELOPER),
+//                new Person(6, "Anton", QA),
+//                new Person(7, "Oleg", JANITOR),
+//                new Person(8, "Stepan", BRANCH_DIRECTOR),
+//                new Person(9, "Ivan", JUNIOR_DEVELOPER)));
+//        System.out.println(arrayList);
 
 
 
+Person person1 = new Person(0, "Robert", MANAGER);
+Person person2 = new Person(1, "Vasy", DIRECTOR);
+Person person3 = new Person(2, "Boss", DRIVER);
+Person person4 = new Person(3, "Riha", ENGINEER);
+Person person5 = new Person(4, "Sany", SENIOR_MANAGER);
+Person person6 = new Person(5, "Andrey", DEVELOPER);
+Person person7 = new Person(6, "Ivan", JUNIOR_DEVELOPER);
+        System.out.println(person2.getArrayList());
+        System.out.println(person2.getArrayList().size());
 
 
-
-
-
-
-        findById(0l);
-        System.out.println();
-
-
-        System.out.println(isManager(list1));
 
 
     }
+
+
+
+
 
 // Взятие элемента по индексу ArrayList О(1)
     public static void findById(Long id){
