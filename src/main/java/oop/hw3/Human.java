@@ -3,22 +3,19 @@ package oop.hw3;
 
 public class Human {
       String name;
-    private  String currentTransport;
+      Transport currentTransport;
 
 
 
 
-
-    public Human(String name, String currentTransport) {
+    public Human(String name, Transport currentTransport) {
         this.name = name;
         this.currentTransport = currentTransport;
-
     }
 
     public Human(String name) {
         this.name = name;
-        this.currentTransport = "null";
-
+        this.currentTransport = currentTransport;
     }
 
 
@@ -26,7 +23,7 @@ public class Human {
         return name;
     }
 
-    public String getCurrentTransport() {
+    public Transport getCurrentTransport() {
         return currentTransport;
     }
 
@@ -35,31 +32,17 @@ public class Human {
         this.name = name;
     }
 
-    public void setCurrentTransport(String currentTransport) {
+    public void setCurrentTransport(Transport currentTransport) {
         this.currentTransport = currentTransport;
     }
 
 
-    public  void inTransport() {
 
-        if (currentTransport.equals("car")) {
-            Car.distance("field", data.DISTANCE.getNum());
-        }
 
-        else if (currentTransport.equals("vezdehod")) {
-            Vezdehod.distance("swamp", data.DISTANCE.getNum());
-        }
 
-        else if (currentTransport.equals("horse")) {
-            Horse.distance("forest", data.DISTANCE.getNum());
-        }
 
-        else if (currentTransport.equals("bike")) {
-            Bike.distance("swamp", data.DISTANCE.getNum());
-        }
+    public int  inTransport() {
+       return currentTransport.distance("field", data.DISTANCE.getNum());
 
-        else if (currentTransport.equals("null")) {
-            System.out.println(name + " пошел пешком.");
-        }
     }
 }

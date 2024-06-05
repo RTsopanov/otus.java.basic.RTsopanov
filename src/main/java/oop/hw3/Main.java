@@ -8,10 +8,10 @@ public class Main {
 
 
 
-        Human human1 = new Human("Вася", "car");
-        Human human2 = new Human("Олег", "vezdehod");
-        Human human3 = new Human("Роберт", "horse");
-        Human human4 = new Human("Сергей", "bike");
+        Human human1 = new Human("Вася", "Car");
+        Human human2 = new Human("Олег", "Vezdeod");
+        Human human3 = new Human("Роберт", "Horse");
+        Human human4 = new Human("Сергей", "Bike");
         Human human5 = new Human("Костя");
 
 

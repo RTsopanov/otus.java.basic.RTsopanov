@@ -1,6 +1,11 @@
 package oop.hw3;
 
 public enum data {
+     FOREST(1),
+    FIELD(2),
+     SWAMP(3),
+
+
     HUMANSTRENGTH(100),
     CARGAS(80),
     VEZDEHODGAS(200),
