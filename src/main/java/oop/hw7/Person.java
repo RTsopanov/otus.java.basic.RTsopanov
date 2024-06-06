@@ -5,28 +5,19 @@ import java.util.List;
 
 public class Person {
     private String name;
-    private int id;
+    private Long id;
     private Position position;
     private List<String> arrayList = new ArrayList<>();
 
 
 
-
-
-    public Person(int id, String name, Position position) {
+    public Person(Long id, String name, Position position) {
         this.name = name;
         this.id = id;
         this.position = position;
-//        arrayList.add(id, name + " " + position);
+        arrayList.add(name + " " + position);
     }
 
-
-    public Person(List<Person> list) {
-        for (Person pers : list) {
-            arrayList.add(pers.getId(), pers.getName() );
-        }
-
-    }
 
 
 
@@ -40,11 +31,11 @@ public class Person {
         this.name = name;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
