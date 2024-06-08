@@ -29,32 +29,41 @@ public class PingServer {
         int sum = 0;
         int num1 = 0;
         int num2 = 0;
-        char simvol = '0';
-        String res = "1";
+        String simvol;
+        String res = "0";
+
+        String[] str1 = str.split(" ");
+        System.out.println(Arrays.toString(str1));
+        for (int i = 0; i < str1.length; i++) {
+            num1 = Integer.parseInt(str1[0]);
+            num2 = Integer.parseInt(str1[2]);
+            simvol = str1[1];
 
 
-        char[] arr = str.toCharArray();
-        for (int i = 0; i < arr.length; i++) {
-            num1 = Character.getNumericValue(arr[0]);
-            num2 = Character.getNumericValue(arr[2]);
-            simvol = arr[1];
-        }
 
 
-        for (int i = 0; i < arr.length; i++) {
-            if(simvol == '+'){
+//        char[] arr = str.toCharArray();
+//        for (int i = 0; i < arr.length; i++) {
+//            num1 = Character.getNumericValue(arr[0]);
+//            num2 = Character.getNumericValue(arr[2]);
+//            simvol = arr[1];
+//        }
+
+
+//        for (int i = 0; i < arr.length; i++) {
+            if(simvol.equals("+")){
                 sum = num1 + num2;
                 res = num1 + " " + simvol + " " + num2 + " " + " = " + sum;
             }
-            else if(simvol == '-'){
+            else if(simvol.equals("-")){
                 sum = num1 - num2;
                 res = num1 + " " + simvol + " " + num2 + " " + " = " + sum;
             }
-            else if(simvol == '*'){
+            else if(simvol.equals("*")){
                 sum = num1 * num2;
                 res = num1 + " " + simvol + " " + num2 + " " + " = " + sum;
             }
-            else if(simvol == '/'){
+            else if(simvol.equals("/")){
                 if(num2 == 0){
                     res = "Делить на ноль нельзя!";
                 }
@@ -65,13 +74,7 @@ public class PingServer {
             else {
                 res = "Введите корректные данные";
             }
-
-            return res;
-
-
-
         }
-
 
         return res;
     }
