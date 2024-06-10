@@ -1,6 +1,6 @@
 package oop.hw3;
 
-public enum data {
+public enum Data {
      FOREST(1),
     FIELD(2),
      SWAMP(3),
@@ -23,7 +23,7 @@ public enum data {
         this.num = num;
     }
 
-    data(int num){
+    Data(int num){
         this.num = num;
     }
 

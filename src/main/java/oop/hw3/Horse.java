@@ -4,41 +4,41 @@ public class Horse implements Transport {
 
 
 
-    public int distance(String terrain, int dist) {
-        if(data.HORSESTRENGTH.getNum() <= 0) {
+    public int distance(Data terrain, int dist) {
+        if(Data.HORSESTRENGTH.getNum() <= 0) {
             System.out.println("Лошади нужно отдохнуть");
             return 0;
         }
 
         else {
             System.out.println("Лошадь в пути!");
-            if (terrain.equals("forest") && (data.HORSESTRENGTH.getNum() - dist <= 0)) {
+            if (terrain.equals(Data.FOREST) && (Data.HORSESTRENGTH.getNum() - dist <= 0)) {
                 System.out.println("Лошадь прошла " + dist + " км по лесу. Лошадь устала!");
-                data.HORSESTRENGTH.setNum(0);
+                Data.HORSESTRENGTH.setNum(0);
                 return dist;
             }
 
 
-            else if (terrain.equals("forest") && (data.HORSESTRENGTH.getNum() - dist > 0)) {
-                     data.HORSESTRENGTH.setNum(data.HORSESTRENGTH.getNum() - dist);
+            else if (terrain.equals(Data.FOREST) && (Data.HORSESTRENGTH.getNum() - dist > 0)) {
+                     Data.HORSESTRENGTH.setNum(Data.HORSESTRENGTH.getNum() - dist);
                       System.out.println("Лошадь прошла " + dist + " км по лесу.");
                 return dist;
             }
 
 
-            else if (terrain.equals("field") && (data.HORSESTRENGTH.getNum() - dist <= 0)) {
+            else if (terrain.equals(Data.FIELD) && (Data.HORSESTRENGTH.getNum() - dist <= 0)) {
                      System.out.println("Лошадь прошла " + dist+ " км по полю. Лошадь устала!");
-                     data.HORSESTRENGTH.setNum(0);
+                     Data.HORSESTRENGTH.setNum(0);
                 return dist;
             }
 
 
-            else if (terrain.equals("field") && (data.HORSESTRENGTH.getNum() - dist > 0)) {
-                     data.HORSESTRENGTH.setNum(data.HORSESTRENGTH.getNum() - dist);
+            else if (terrain.equals(Data.FIELD) && (Data.HORSESTRENGTH.getNum() - dist > 0)) {
+                     Data.HORSESTRENGTH.setNum(Data.HORSESTRENGTH.getNum() - dist);
                      System.out.println("Лошадь прошла " + dist + " км по полю.");
                 return dist;
             }
-            else if (terrain.equals("swamp")) {
+            else if (terrain.equals(Data.SWAMP)) {
                      System.out.println("Лошадь не умеет ходить по болоту!");
                 return 0;
             }

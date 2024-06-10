@@ -1,17 +1,17 @@
 package oop.hw3;
 
 
-
+import static oop.hw3.Transport.*;
 
 public class Main {
     public static void main(String[] args) {
 
 
 
-        Human human1 = new Human("Вася", "Car");
-        Human human2 = new Human("Олег", "Vezdeod");
-        Human human3 = new Human("Роберт", "Horse");
-        Human human4 = new Human("Сергей", "Bike");
+        Human human1 = new Human("Вася", car);
+        Human human2 = new Human("Олег", vezdehod);
+        Human human3 = new Human("Роберт", horse);
+        Human human4 = new Human("Сергей", bike);
         Human human5 = new Human("Костя");
 
 

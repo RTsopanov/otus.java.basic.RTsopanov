@@ -42,7 +42,12 @@ public class Human {
 
 
     public int  inTransport() {
-       return currentTransport.distance("field", data.DISTANCE.getNum());
+        if (currentTransport == null){
+            System.out.println(name + " пошел пешком " + Data.HUMANSTRENGTH.getNum() + " км.");
+            return Data.HUMANSTRENGTH.getNum();
+        }
+        else
+       return currentTransport.distance(Data.SWAMP, Data.DISTANCE.getNum());
 
     }
 }

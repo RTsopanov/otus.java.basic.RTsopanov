@@ -3,36 +3,36 @@ package oop.hw3;
 public class Car implements Transport {
 
 
-    public  int distance(String terrain, int dist) {
-        if (data.CARGAS.getNum() <= 0) {
+    public  int distance(Data terrain, int dist) {
+        if (Data.CARGAS.getNum() <= 0) {
             System.out.println("В машине нет топлива!");
             return 0;
         }
 
         else {
-            if (terrain.equals(data.FIELD)) {
+            if (terrain.equals(Data.FOREST)) {
                 System.out.println("Машина по лесу не проедет");
                 return 0;
             }
 
 
-            else if (terrain.equals(data.FIELD)) {
+            else if (terrain.equals(Data.FIELD)) {
                 System.out.println("Машина в пути.");
-                if (data.CARGAS.getNum() - (dist * 0.1) <= 0) {
-                    System.out.println("Машина проехала " + data.CARGAS.getNum() * 10 + "км по полю. Закончилось топливо!");
-                    data.CARGAS.setNum(0);
-                    return data.CARGAS.getNum() * 10;
+                if (Data.CARGAS.getNum() - (dist * 0.1) <= 0) {
+                    System.out.println("Машина проехала " + Data.CARGAS.getNum() * 10 + "км по полю. Закончилось топливо!");
+                    Data.CARGAS.setNum(0);
+                    return Data.CARGAS.getNum() * 10;
                 }
 
-                else if (data.CARGAS.getNum() - (dist * 0.1) > 0) {
-                    data.CARGAS.setNum(data.CARGAS.getNum() - dist);
+                else if (Data.CARGAS.getNum() - (dist * 0.1) > 0) {
+                    Data.CARGAS.setNum(Data.CARGAS.getNum() - dist);
                     System.out.println("Машина проехала " + dist + " км по полю.");
                 return dist;
                 }
             }
 
 
-            else if (terrain.equals("swamp")) {
+            else if (terrain.equals(Data.SWAMP)) {
                 System.out.println("Машина не проедет по болоту!");
                 return 0;
             }
