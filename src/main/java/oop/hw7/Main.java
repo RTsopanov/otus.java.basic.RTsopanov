@@ -42,33 +42,40 @@ public class Main {
 
 //TODO  Взятие элемента по индексу ArrayList О(1)
         PersonDataBase personDataBase = new PersonDataBase(list);
-        System.out.println(findById(personDataBase.getArrayList(), 5));
+        findById( 5L);
+
         System.out.println();
 
 
 //TODO Вставка элемента в начало LinkedList О(1)
-        add("AAA", PLUMBER, personDataBase.getLinkedList());
-        System.out.println(personDataBase.getLinkedList());
+//        add("AAA", PLUMBER, personDataBase.getLinkedList());
+//        System.out.println(personDataBase.getLinkedList());
         System.out.println();
 
 
 //TODO Поиск в HashSet  О(1)
-        System.out.println(isManager(MANAGER, personDataBase.getHashSet()));
-        System.out.println(isManager(JANITOR, personDataBase.getHashSet()));
+//        System.out.println(isManager(MANAGER, personDataBase.getHashSet()));
+//        System.out.println(isManager(JANITOR, personDataBase.getHashSet()));
         System.out.println();
 
 
 //TODO Поиск в HashMap по ключу
-        System.out.println(isEmployee(7L, personDataBase.getHashMap()));
-        System.out.println(isEmployee(0L, personDataBase.getHashMap()));
+//        System.out.println(isEmployee(7L, personDataBase.getHashMap()));
+//        System.out.println(isEmployee(0L, personDataBase.getHashMap()));
     }
 
 
 
 
-    public static String findById(List<String> list, int id) {
-        return list.get(id);
+//    public static String findById(List<String> list, int id) {
+//        return list.get(id);
+//    }
+
+
+    public  Person findById(Long id) {
+        return getHashMap().get(id);
     }
+
 
 
 
