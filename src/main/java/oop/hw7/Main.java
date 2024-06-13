@@ -20,11 +20,10 @@ public class Main {
 
 
 
-
-
         bubbleSort(arr);
         System.out.println(Arrays.toString(arr));
         System.out.println();
+
 
 
         List<Person> list = new ArrayList<>(Arrays.asList(
@@ -40,80 +39,28 @@ public class Main {
                 new Person(9L, "Ivan", JUNIOR_DEVELOPER)));
 
 
-//TODO  Взятие элемента по индексу ArrayList О(1)
         PersonDataBase personDataBase = new PersonDataBase(list);
-        findById( 5L);
 
+
+//TODO   найти Person по id - O(1)
+        System.out.println(personDataBase.findById(5L));
         System.out.println();
 
 
-//TODO Вставка элемента в начало LinkedList О(1)
-//        add("AAA", PLUMBER, personDataBase.getLinkedList());
-//        System.out.println(personDataBase.getLinkedList());
+//TODO добавить Person - O(1)
+        personDataBase.add(new Person(10L, "RRR", QA));
+        System.out.println(personDataBase.getHashMap());
         System.out.println();
 
 
-//TODO Поиск в HashSet  О(1)
-//        System.out.println(isManager(MANAGER, personDataBase.getHashSet()));
-//        System.out.println(isManager(JANITOR, personDataBase.getHashSet()));
+
+//TODO true если Position : MANAGER, DIRECTOR, BRANCH_DIRECTOR или SENIOR_MANAGER   O(1)
+        System.out.println(personDataBase.isManager(personDataBase.findById(1L)));
         System.out.println();
 
 
-//TODO Поиск в HashMap по ключу
-//        System.out.println(isEmployee(7L, personDataBase.getHashMap()));
-//        System.out.println(isEmployee(0L, personDataBase.getHashMap()));
+//TODO  true если Employee имеет любой другой Position  O(1)
+        System.out.println(personDataBase.isEmployee(1L));
+
     }
-
-
-
-
-//    public static String findById(List<String> list, int id) {
-//        return list.get(id);
-//    }
-
-
-    public  Person findById(Long id) {
-        return getHashMap().get(id);
-    }
-
-
-
-
-    public static void add(String name, Position position, List<String> list) {
-        list.add(0, name + " " + position);
-    }
-
-
-
-    public static boolean isManager(Position position, Set<Position> set) {
-        if (position.equals(MANAGER) || position.equals(DIRECTOR) || position.equals(BRANCH_DIRECTOR)
-                || position.equals(SENIOR_MANAGER)) {
-            set.contains(position);
-            return true;
-        }
-        return false;
-    }
-
-
-
-    public static boolean isEmployee(Long id, Map<Long, Position> map) {
-        if (map.get(id).equals(MANAGER) || map.get(id).equals(DIRECTOR)
-                || map.get(id).equals(BRANCH_DIRECTOR) || map.get(id).equals(SENIOR_MANAGER)) {
-            map.containsKey(map.get(id));
-            return false;
-        }
-        return true;
-    }
-
-
-
-
-//    Person person1 = new Person(0, "Robert", MANAGER);
-//    Person person2 = new Person(1, "Vasy", DIRECTOR);
-//    Person person3 = new Person(2, "Boss", DRIVER);
-//    Person person4 = new Person(3, "Riha", ENGINEER);
-//    Person person5 = new Person(4, "Sany", SENIOR_MANAGER);
-//    Person person6 = new Person(5, "Andrey", DEVELOPER);
-//    Person person7 = new Person(6, "Ivan", JUNIOR_DEVELOPER);
-
 }

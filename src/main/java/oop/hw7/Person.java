@@ -52,4 +52,12 @@ public class Person {
 //    public void setArrayList(List<String> arrayList) {
 //        this.arrayList = arrayList;
 //    }
+
+
+    @Override
+    public String toString() {
+        return "\nid = " + id +
+                ", name = " + name +
+                ", position= " + position;
+    }
 }
