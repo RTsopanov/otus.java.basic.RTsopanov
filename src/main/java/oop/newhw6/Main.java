@@ -1,13 +1,10 @@
 package oop.newhw6;
 
-import oop.newhw6.PhoneBook;
 
-import java.util.*;
 
 import static oop.newhw6.PhoneBook.*;
 
 
-//import static oop.hw6.PhoneBook.*;
 
 
 public class Main {
@@ -21,16 +18,13 @@ public class Main {
 
 
 
-//        System.out.println();
-//
         add("Антон Чехов",   "+7-999-999-99-99");
         System.out.println();
-//
-//        add("Берия Лаврентий", "+7-999-698-11-11");
-//        System.out.println();
-//
-//        find("Берия Лаврентий");
-//        System.out.println();
+
+
+        find("Берия Лаврентий");
+        find("Иосиф Сталин");
+        System.out.println();
 
         System.out.println(containsPhoneNumber("+7-999-999-99-99"));
 

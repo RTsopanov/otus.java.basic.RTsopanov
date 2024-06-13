@@ -8,11 +8,8 @@ import java.util.Set;
 
 public class PhoneBook {
 
-//  private  String name;
-//    private String phoneNumber;
 
-
-    public static Map<String, Set<String>> book = new HashMap<>();
+    protected static final Map<String, Set<String>> book = new HashMap<>();
 
 
     public PhoneBook(String name, String phoneNumber) {
