@@ -17,31 +17,36 @@ public class Main {
 
 
     public static void allFile() {
+        Path path = Paths.get("src", "main", "test");
+        File directory = path.toFile();
 
-        File path  = new File ("src\\main", "test");
-        File directory = new File(String.valueOf(path));
-        File[] fileList = directory.listFiles();
+        if (directory.exists() && directory.isDirectory()) {
+            File[] fileList = directory.listFiles();
 
-
-       for (File file : fileList) {
-            System.out.println(file.getName());
+            if (fileList != null) {
+                for (File file : fileList) {
+                    System.out.println(file.getName());
+                }
+            } else {
+                System.out.println("The directory is empty or an I/O error occurred.");
+            }
+        } else {
+            System.out.println("The directory does not exist or is not a directory.");
         }
 
-
         System.out.println();
-        workWtithFile();
-
+        workWithFile();
     }
 
 
 
-    public static void workWtithFile() {
+    public static void workWithFile() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите имя файла для работы с ним. \n");
 
 
-        File path  = new File ("src\\main\\test", scanner.nextLine());
-        File directory = new File(String.valueOf(path));
+        Path path  =  Paths.get ("src", "main", "test", scanner.nextLine());
+        File directory = path.toFile();
 
 
         try (BufferedInputStream buff = new BufferedInputStream(new FileInputStream(directory));
@@ -53,7 +58,6 @@ public class Main {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println();
         }
 
 
