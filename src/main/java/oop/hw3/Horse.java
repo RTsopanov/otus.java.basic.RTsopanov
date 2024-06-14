@@ -1,37 +1,56 @@
 package oop.hw3;
 
 public class Horse implements Transport {
-    static int strength = 100;
 
 
-    public static boolean distance(String terrain, int distdistance) {
-        if(Horse.strength <= 0) {
+
+    public int distance(Data terrain, int dist) {
+        if(Data.HORSESTRENGTH.getNum() <= 0) {
             System.out.println("Лошади нужно отдохнуть");
+            return 0;
         }
+
         else {
             System.out.println("Лошадь в пути!");
-            if (terrain.equals("forest") && Horse.strength - distdistance <= 0) {
-                System.out.println("Лошадь прошла " + distdistance + " км по лесу. Лошадь устала!");
-                Horse.strength = 0;
+            if (terrain.equals(Data.FOREST) && (Data.HORSESTRENGTH.getNum() - dist <= 0)) {
+                System.out.println("Лошадь прошла " + dist + " км по лесу. Лошадь устала!");
+                Data.HORSESTRENGTH.setNum(0);
+                return dist;
             }
-            else if (terrain.equals("forest") && Horse.strength - distdistance > 0){
-                Horse.strength = Horse.strength - distdistance;
-                System.out.println("Лошадь прошла " + distdistance + " км по лесу.");
+
+
+            else if (terrain.equals(Data.FOREST) && (Data.HORSESTRENGTH.getNum() - dist > 0)) {
+                     Data.HORSESTRENGTH.setNum(Data.HORSESTRENGTH.getNum() - dist);
+                      System.out.println("Лошадь прошла " + dist + " км по лесу.");
+                return dist;
             }
-            else if (terrain.equals("field") && Horse.strength - distdistance <= 0) {
-                System.out.println("Лошадь прошла " + distdistance+ " км по полю. Лошадь устала!");
-                Horse.strength = 0;
+
+
+            else if (terrain.equals(Data.FIELD) && (Data.HORSESTRENGTH.getNum() - dist <= 0)) {
+                     System.out.println("Лошадь прошла " + dist+ " км по полю. Лошадь устала!");
+                     Data.HORSESTRENGTH.setNum(0);
+                return dist;
             }
-            else if (terrain.equals("field") && Horse.strength - distdistance > 0) {
-                Horse.strength = Horse.strength - distdistance;
-                System.out.println("Лошадь прошла " + distdistance + " км по полю.");
+
+
+            else if (terrain.equals(Data.FIELD) && (Data.HORSESTRENGTH.getNum() - dist > 0)) {
+                     Data.HORSESTRENGTH.setNum(Data.HORSESTRENGTH.getNum() - dist);
+                     System.out.println("Лошадь прошла " + dist + " км по полю.");
+                return dist;
             }
-            else if (terrain.equals("swamp")) {
-                System.out.println("Лошадь не умеет ходить по болоту!");
+            else if (terrain.equals(Data.SWAMP)) {
+                     System.out.println("Лошадь не умеет ходить по болоту!");
+                return 0;
             }
-            else System.out.println("Укажите местность корректно (forest/field/swamp)!");
+
+
+            else {
+                System.out.println("Укажите местность корректно (forest/field/swamp)!");
+                 }
+            }
+        return 0;
         }
-        return true;
+
     }
 
-}
+

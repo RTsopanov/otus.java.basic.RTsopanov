@@ -1,36 +1,53 @@
 package oop.hw3;
 
 public class Car implements Transport {
-    static int gas = 80;
 
 
-public static boolean distance(String terrain, int  distdistance) {
-        if(Car.gas <= 0) {
+    public  int distance(Data terrain, int dist) {
+        if (Data.CARGAS.getNum() <= 0) {
             System.out.println("В машине нет топлива!");
-            return false;
+            return 0;
         }
-        else {
-            if (terrain.equals("forest")) {
-                System.out.println("Машина по лесу не проедет");
-            } else if (terrain.equals("field")) {
-                System.out.println("Машина в пути.");
 
-                if(Car.gas - distdistance * 0.1  <= 0){
-                    System.out.println("Машина проехала " + Car.gas * 10 + "км по полю. Закончилось топливо!");
-                    Car.gas = 0;
+        else {
+            if (terrain.equals(Data.FOREST)) {
+                System.out.println("Машина по лесу не проедет");
+                return 0;
+            }
+
+
+            else if (terrain.equals(Data.FIELD)) {
+                System.out.println("Машина в пути.");
+                if (Data.CARGAS.getNum() - (dist * 0.1) <= 0) {
+                    System.out.println("Машина проехала " + Data.CARGAS.getNum() * 10 + "км по полю. Закончилось топливо!");
+                    Data.CARGAS.setNum(0);
+                    return Data.CARGAS.getNum() * 10;
                 }
-                else if(Car.gas - (distdistance * 0.1) > 0){
-                    Car.gas = Car.gas - distdistance;
-                    System.out.println("Машина проехала " + distdistance + " км по полю.");
+
+                else if (Data.CARGAS.getNum() - (dist * 0.1) > 0) {
+                    Data.CARGAS.setNum(Data.CARGAS.getNum() - dist);
+                    System.out.println("Машина проехала " + dist + " км по полю.");
+                return dist;
                 }
             }
-            else if (terrain.equals("swamp")) {
+
+
+            else if (terrain.equals(Data.SWAMP)) {
                 System.out.println("Машина не проедет по болоту!");
+                return 0;
             }
-            else System.out.println("Укажите местность корректно (forest/field/swamp)!");
+
+
+            else {
+                System.out.println("Укажите местность корректно (forest/field/swamp)!");
+            }
         }
-    return true;
+        return 0;
     }
 
 
+
 }
+
+
+

@@ -1,22 +1,21 @@
 package oop.hw3;
 
-public class Human extends Car {
-     static String name;
-    private static String currentTransport;
 
-    static int strength = 100;
+public class Human {
+      String name;
+      Transport currentTransport;
 
 
-    public Human(String name, String currentTransport) {
+
+
+    public Human(String name, Transport currentTransport) {
         this.name = name;
         this.currentTransport = currentTransport;
-
     }
 
     public Human(String name) {
         this.name = name;
-        this.currentTransport = "null";
-
+        this.currentTransport = currentTransport;
     }
 
 
@@ -24,7 +23,7 @@ public class Human extends Car {
         return name;
     }
 
-    public String getCurrentTransport() {
+    public Transport getCurrentTransport() {
         return currentTransport;
     }
 
@@ -33,23 +32,22 @@ public class Human extends Car {
         this.name = name;
     }
 
-    public void setCurrentTransport(String currentTransport) {
+    public void setCurrentTransport(Transport currentTransport) {
         this.currentTransport = currentTransport;
     }
 
 
-    public static void inTransport() {
 
-        if (Human.currentTransport.equals("car")) {
-            Car.distance("field", 100);
-        } else if (Human.currentTransport.equals("vezdehod")) {
-            Vezdehod.distance("swamp", 100);
-        } else if (Human.currentTransport.equals("horse")) {
-            Horse.distance("forest", 100);
-        } else if (Human.currentTransport.equals("bike")) {
-            Bike.distance("swamp", 100);
-        } else if (Human.currentTransport.equals("null")) {
-            System.out.println(name + " пошел пешком.");
+
+
+
+    public int  inTransport() {
+        if (currentTransport == null){
+            System.out.println(name + " пошел пешком " + Data.HUMANSTRENGTH.getNum() + " км.");
+            return Data.HUMANSTRENGTH.getNum();
         }
+        else
+       return currentTransport.distance(Data.SWAMP, Data.DISTANCE.getNum());
+
     }
 }
