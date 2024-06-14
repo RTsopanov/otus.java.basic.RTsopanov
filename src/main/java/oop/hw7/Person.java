@@ -1,13 +1,10 @@
 package oop.hw7;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Person {
     private String name;
     private Long id;
     private Position position;
-    private List<String> arrayList = new ArrayList<>();
+//    private List<String> arrayList = new ArrayList<>();
 
 
 
@@ -15,7 +12,8 @@ public class Person {
         this.name = name;
         this.id = id;
         this.position = position;
-        arrayList.add(name + " " + position);
+//        arrayList.add(name + " " + position)
+        ;
     }
 
 
@@ -47,11 +45,19 @@ public class Person {
         this.position = position;
     }
 
-    public List<String> getArrayList() {
-        return arrayList;
-    }
+//    public List<String> getArrayList() {
+//        return arrayList;
+//    }
+//
+//    public void setArrayList(List<String> arrayList) {
+//        this.arrayList = arrayList;
+//    }
 
-    public void setArrayList(List<String> arrayList) {
-        this.arrayList = arrayList;
+
+    @Override
+    public String toString() {
+        return "\nid = " + id +
+                ", name = " + name +
+                ", position= " + position;
     }
 }

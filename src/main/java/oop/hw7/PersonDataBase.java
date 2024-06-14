@@ -1,27 +1,17 @@
 package oop.hw7;
 
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.*;
+
+import static oop.hw7.Position.*;
+import static oop.hw7.Position.SENIOR_MANAGER;
 
 public class PersonDataBase {
 
-    private List<String> arrayList = new ArrayList<String>();
-    private List<String> linkedList = new LinkedList<>();
-    private Set<Position> hashSet = new HashSet<>();
-    private Map<Long, Position> hashMap = new HashMap<>();
+    private List<String> arrayList = new ArrayList<>();
 
-
-
-
-    public  PersonDataBase(List<Person> arList){
-        for (Person pers : arList) {
-            arrayList.add(Math.toIntExact(pers.getId()), pers.getName() + " " + pers.getPosition());
-            linkedList.add(pers.getName() + " " + pers.getPosition());
-            hashSet.add(pers.getPosition());
-            hashMap.put(pers.getId(), pers.getPosition());
-        }
-
-    }
-
+    private  Map<Long, Person> hashMap = new LinkedHashMap<>();
 
 
 
@@ -32,28 +22,70 @@ public class PersonDataBase {
     public void setArrayList(List<String> arrayList) {
         this.arrayList = arrayList;
     }
-
-    public List<String> getLinkedList() {
-        return linkedList;
+    public void setHashMap(Map<Long, Person> hashMap) {
+        this.hashMap = hashMap;
     }
 
-    public void setLinkedList(LinkedList<String> linkedList) {
-        this.linkedList = linkedList;
-    }
-
-    public Set<Position> getHashSet() {
-        return hashSet;
-    }
-
-    public void setHashSet(Set<Position> hashSet) {
-        this.hashSet = hashSet;
-    }
-    public Map<Long, Position> getHashMap() {
+    public  Map<Long, Person> getHashMap() {
         return hashMap;
     }
 
-    public void setHashMap(Map<Long, Position> hashMap) {
-        this.hashMap = hashMap;
+
+
+
+
+
+
+//    public  PersonDataBase(List<Person> arList){
+//        for (Person pers : arList) {
+//            arrayList.add(Math.toIntExact(pers.getId()), pers.getName() + " " + pers.getPosition());
+//            linkedList.add(pers.getName() + " " + pers.getPosition());
+//            hashSet.add(pers.getPosition());
+//            hashMap.put(pers.getId(), pers.getPosition());
+//        }
+
+
+
+
+    public  PersonDataBase(List<Person> arList){
+        for (Person pers : arList) {
+            arrayList.add(Math.toIntExact(pers.getId()), pers.getName() + " " + pers.getPosition());
+            hashMap.put(pers.getId(), new Person(pers.getId(), pers.getName(), pers.getPosition()));
+        }
+    }
+
+
+
+    public  Person findById(Long id) {
+        return   hashMap.get(id);
+    }
+
+
+
+
+    public  void add(Person person) {
+        hashMap.put(person.getId(), new Person (person.getId(), person.getName(), person.getPosition()));
+    }
+
+
+    public boolean isManager(Person person) {
+        if (person.getPosition() == MANAGER || person.getPosition() == DIRECTOR || person.getPosition() == BRANCH_DIRECTOR
+                || person.getPosition() == SENIOR_MANAGER) {
+            return true;
+        }
+        return false;
+    }
+
+
+
+
+    public  boolean isEmployee(Long id) {
+        if (hashMap.get(id).getPosition().equals(MANAGER) || hashMap.get(id).getPosition().equals(DIRECTOR) || hashMap.get(id).getPosition().equals(BRANCH_DIRECTOR) ||
+                hashMap.get(id).getPosition().equals(SENIOR_MANAGER))
+        {
+            return false;
+        }
+        return true;
     }
 
 
