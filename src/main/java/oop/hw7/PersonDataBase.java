@@ -57,7 +57,7 @@ public class PersonDataBase {
 
 
     public  Person findById(Long id) {
-        return   getHashMap().get(id);
+        return   hashMap.get(id);
     }
 
 
@@ -69,8 +69,8 @@ public class PersonDataBase {
 
 
     public boolean isManager(Person person) {
-        if (person.getPosition().equals(MANAGER) || person.getPosition().equals(DIRECTOR) || person.getPosition().equals(BRANCH_DIRECTOR)
-                || person.getPosition().equals(SENIOR_MANAGER)) {
+        if (person.getPosition() == MANAGER || person.getPosition() == DIRECTOR || person.getPosition() == BRANCH_DIRECTOR
+                || person.getPosition() == SENIOR_MANAGER) {
             return true;
         }
         return false;
