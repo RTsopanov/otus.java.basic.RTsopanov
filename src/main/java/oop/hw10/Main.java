@@ -1,21 +1,19 @@
 package oop.hw10;
 
+import java.util.Arrays;
+
 import static oop.hw10.MyClass.*;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
 
-        double[] array = new double[100_000];
+        double[] array = new double[100_000_000];
         double num = 1.0;
         for (int i = 0; i < array.length; i++) {
             array[i] += num;
             num++;
         }
 
-
-
-
-        System.out.println();
 
 
         long startTime = System.currentTimeMillis();
@@ -59,16 +57,16 @@ public class Main {
 
         long startTimeTwo = System.currentTimeMillis();
         t1.start();
-        t1.join();
+//        t1.join();
 
         t2.start();
-        t2.join();
+//        t2.join();
 
         t3.start();
-        t3.join();
+//        t3.join();
 
         t4.start();
-        t4.join();
+//        t4.join();
 
 
         long endTimeTwo = System.currentTimeMillis();
