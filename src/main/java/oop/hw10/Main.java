@@ -58,11 +58,6 @@ public class Main {
                 for (int i = 75_000_000; i < 100_000_000; i++) {
                     array[i] = 1.14 * Math.cos(i) * Math.sin(i * 0.2) * Math.cos(i / 1.2);
                 }
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
             }
         });
 
@@ -70,12 +65,13 @@ public class Main {
         long startTimeTwo = System.currentTimeMillis();
 
         t1.start();
-
         t2.start();
-
         t3.start();
-
         t4.start();
+
+        t1.join();
+        t2.join();
+        t3.join();
         t4.join();
 
         long endTimeTwo = System.currentTimeMillis();
