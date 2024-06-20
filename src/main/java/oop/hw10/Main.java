@@ -30,7 +30,6 @@ public class Main {
                 for (int i = 0; i < 25_000_000; i++) {
                     array[i] = 1.14 * Math.cos(i) * Math.sin(i * 0.2) * Math.cos(i / 1.2);
                 }
-                System.out.println(Thread.currentThread().getName());
             }
         });
 
@@ -41,7 +40,6 @@ public class Main {
                 for (int i = 25_000_000; i < 50_000_000; i++) {
                     array[i] = 1.14 * Math.cos(i) * Math.sin(i * 0.2) * Math.cos(i / 1.2);
                 }
-                System.out.println(Thread.currentThread().getName());
             }
         });
 
@@ -51,7 +49,6 @@ public class Main {
                 for (int i = 50_000_000; i < 75_000_000; i++) {
                     array[i] = 1.14 * Math.cos(i) * Math.sin(i * 0.2) * Math.cos(i / 1.2);
                 }
-                System.out.println(Thread.currentThread().getName());
             }
         });
 
@@ -66,7 +63,6 @@ public class Main {
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-                System.out.println(Thread.currentThread().getName());
             }
         });
 
@@ -74,14 +70,10 @@ public class Main {
         long startTimeTwo = System.currentTimeMillis();
 
         t1.start();
-//        t1.join();
-
 
         t2.start();
-//        t2.join();
 
         t3.start();
-//         t3.join();
 
         t4.start();
         t4.join();
