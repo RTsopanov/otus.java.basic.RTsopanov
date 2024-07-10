@@ -3,10 +3,9 @@ package oop.hw12;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
-public class main {
+public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String file;
@@ -14,11 +13,19 @@ public class main {
 
 
         System.out.println("Введите имя файла");
-        file = scanner.nextLine();
+        file = scanner.nextLine().trim();
+        while (file.isEmpty()) {
+            System.out.println("Имя файла не может быть пустым. Введите имя файла");
+            file = scanner.nextLine().trim();
+        }
+
+
         System.out.println("Введите букву");
-        simvol = scanner.nextLine().charAt(0);
+        simvol = scanner.nextLine().trim().charAt(0);
+        scanner.close();
 
         System.out.println(search(file, simvol));
+
     }
 
 
