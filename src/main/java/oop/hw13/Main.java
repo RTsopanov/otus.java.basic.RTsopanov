@@ -5,9 +5,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
-    Object mon = new Object();
-    static Main main = new Main();
-    static String abc;
+    private final Object mon = new Object();
+    private static Main main = new Main();
+    private static StringBuilder  abc = new StringBuilder();
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -18,26 +18,28 @@ public class Main {
         serv.execute(() -> main.printC());
         serv.shutdown();
 
-        serv.awaitTermination(10, TimeUnit.MILLISECONDS);
+        if (!serv.awaitTermination(1, TimeUnit.SECONDS)) {
+            serv.shutdownNow();
+        }
         System.out.println(abc);
     }
 
 
     public void printA() {
         synchronized (mon) {
-            for (int i = 0; i < 5; i++) {
-                if (abc == null) {
-                    abc = "A";
+            for (int i = 0; i < 4; i++) {
+                if (abc.length() == 0) {
+                    abc.append("A");
                 }
 
                 while (abc.charAt(abc.length() - 1) != 'C') {
                     try {
                         mon.wait();
                     } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
+                        Thread.currentThread().interrupt();
                     }
                 }
-                abc += "A";
+                abc.append("A");
                 mon.notifyAll();
             }
         }
@@ -51,10 +53,10 @@ public class Main {
                     try {
                         mon.wait();
                     } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
+
                     }
                 }
-                abc += "B";
+                abc.append("B");
                 mon.notifyAll();
             }
         }
@@ -68,10 +70,10 @@ public class Main {
                     try {
                         mon.wait();
                     } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
+                        Thread.currentThread().interrupt();
                     }
                 }
-                abc += 'C';
+                abc.append("C");
                 mon.notifyAll();
             }
         }
