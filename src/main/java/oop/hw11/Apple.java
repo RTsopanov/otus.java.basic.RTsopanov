@@ -1,20 +1,17 @@
 package oop.hw11;
 
 public class Apple extends Fruit {
-    private int quantityApple;
+    private int weightApple;
 
-
-
-    public Apple(int quantityApple) {
-        this.quantityApple = quantityApple;
+    public Apple(int weightApple) {
+        this.weightApple = weightApple;
     }
 
-
-    public int getQuantityApple() {
-        return quantityApple;
+    public int getWeightApple() {
+        return weightApple;
     }
 
-    public void setQuantityApple(int quantityApple) {
-        this.quantityApple = quantityApple;
+    public void setWeightApple(int weightApple) {
+        this.weightApple = weightApple;
     }
 }

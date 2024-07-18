@@ -1,31 +1,30 @@
 package oop.hw11;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
+
 public class Main {
     public static void main(String[] args) {
 
 
-        Apple apple = new Apple(20);
-        Orange orange = new Orange(15);
-        Fruit fruit = new Fruit();
-        Box box = new Box<>();
+        Apple app = new Apple(15);
+        Orange ora = new Orange(20);
+
+        Box<Apple> apple = new Box<>(new ArrayList<>());
+        Box<Orange> orange = new Box<>(new ArrayList<>());
+        Box<Fruit> fruit = new Box<>(new ArrayList<>());
 
 
-
-        box.putInBox(apple, orange);
-        System.out.println();
-
+        apple.put(app);
+        orange.put(ora);
 
 
-
-
-        System.out.println(box.getBox3());
-        System.out.println();
-        box.putInBoxFruit(box.getBox3(), box.getBox1());
-        box.putInBoxFruit(box.getBox3(), box.getBox2());
-        System.out.println(box.getBox3());
-
-
+        apple.transferTo(fruit);
+        orange.transferTo(fruit);
 
 
     }
+
+
 }
