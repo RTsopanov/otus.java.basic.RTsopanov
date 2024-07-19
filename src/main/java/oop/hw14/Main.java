@@ -11,6 +11,7 @@ public class Main {
 
 
     public static void main(String[] args) {
+
         int[] arr1 = {1, 2, 1, 1, 2};
         int[] arr2 = {1, 2, 1, 2, 2};
         int[] arr3 = {1, 1, 2, 2, 2};
@@ -19,8 +20,9 @@ public class Main {
         int[] arr6 = {2, 2, 2, 2, -1};
         int[] arr7 = {-1, 2, 2, 2, 2};
 
-//        System.out.println(Arrays.toString(array(arr1)));
-//        System.out.println(Arrays.toString(array(arr2)));
+
+        System.out.println(Arrays.toString(array(arr1)));
+        System.out.println(Arrays.toString(array(arr2)));
 //        System.out.println(Arrays.toString(array(arr3)));
 //        System.out.println(Arrays.toString(array(arr4)));
 //
