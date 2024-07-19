@@ -21,10 +21,10 @@ public class Main {
         int[] arr7 = {-1, 2, 2, 2, 2};
 
 
-        System.out.println(Arrays.toString(array(arr1)));
-        System.out.println(Arrays.toString(array(arr2)));
+//        System.out.println(Arrays.toString(array(arr1)));
+//        System.out.println(Arrays.toString(array(arr2)));
 //        System.out.println(Arrays.toString(array(arr3)));
-//        System.out.println(Arrays.toString(array(arr4)));
+        System.out.println(Arrays.toString(array(arr4)));
 //
 //        System.out.println(Arrays.toString(array(arr5)));
 //        System.out.println(Arrays.toString(array(arr6)));
@@ -37,7 +37,9 @@ public class Main {
         System.out.println();
 
         System.out.println(chekingArray(arr5));
+        System.out.println("My");
         System.out.println(chekingArray(arr4));
+        System.out.println("My");
         System.out.println(chekingArray(arr6));
         System.out.println(chekingArray(arr7));
     }
@@ -89,6 +91,7 @@ public class Main {
         }
         return true;
     }
+
 
 
 }

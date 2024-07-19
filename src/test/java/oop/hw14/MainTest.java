@@ -1,5 +1,6 @@
 package oop.hw14;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,70 +16,93 @@ class MainTest {
     Main main;
 
 
-    static int[] arr1 = {1, 2, 1, 1, 2};
-    static int[] arr11 = {2};
-    static int[] arr2 = {2, 2};
-    static int[] arr3 = {2, 2, 2};
-    static int[] arr4 = {1, 1, 1, 1, 1};
-    static int[] arr5 = {2, 2, 2, 2, 2};
-    static int[] arr6 = {2, 2, 2, 2, -1};
-    static int[] arr7 = {-1, 2, 2, 2, 2};
-    private static Stream<Arguments> array;
-
-
     @BeforeEach
     public void prepare() {
         main = new Main();
+        System.out.println("Start test");
     }
+
+    @AfterEach
+    public void after() {
+        System.out.println("End test");
+    }
+
+
 
     public static Stream<Arguments> getArray() {
         List<Arguments> arr = new ArrayList<>();
-        arr.add(Arguments.of(new int[]{1, 2, 1, 1, 2}));
-        arr.add(Arguments.of(new int[]{1, 2, 1, 2, 2}));
-        arr.add(Arguments.of(new int[]{1, 1, 2, 2, 2}));
-        arr.add(Arguments.of(new int[]{1, 1, 1, 1, 1}));
+        arr.add(Arguments.of(new int[]{2}, new int[]{1, 2, 1, 1, 2}));
+        arr.add(Arguments.of(new int[]{2, 2}, new int[]{1, 2, 1, 2, 2}));
+        arr.add(Arguments.of(new int[]{2, 2, 2}, new int[]{1, 1, 2, 2, 2}));
+        arr.add(Arguments.of(new int[]{}, new int[]{1, 1, 1, 1, 1}));
+        return arr.stream();
+    }
+    @ParameterizedTest
+    @MethodSource("getArray")
+    void array(int[] res, int[] arr) {
+        Assertions.assertArrayEquals(res, main.array(arr));
+    }
+
+
+
+
+
+    public static Stream<Arguments> getArrayTwo() {
+        List<Arguments> arr = new ArrayList<>();
         arr.add(Arguments.of(new int[]{2, 2, 2, 2, 2}));
         arr.add(Arguments.of(new int[]{2, 2, 2, 2, -1}));
         arr.add(Arguments.of(new int[]{-1, 2, 2, 2, 2}));
         return arr.stream();
     }
 
+    @ParameterizedTest
+    @MethodSource("getArrayTwo")
+    void array(int[] arr) {
+        Assertions.assertThrowsExactly(RuntimeException.class, () -> main.array(arr));
+
+    }
+
+
+
+
+
+
+    public static Stream<Arguments> getArrayThree() {
+        List<Arguments> arr = new ArrayList<>();
+        arr.add(Arguments.of(new int[]{1, 2, 1, 1, 2}));
+        arr.add(Arguments.of(new int[]{1, 2, 1, 2, 2}));
+        arr.add(Arguments.of (new int[]{1, 1, 2, 2, 2}));
+        return arr.stream();
+    }
 
     @ParameterizedTest
-    @MethodSource("getArray")
-    void array(int[] arr) {
-        Assertions.assertEquals(new int[]{2}, main.array(arr));
-        Assertions.assertEquals(arr2, main.array(arr));
-
-    }
-
-    @Test
-    void array() {
-        Assertions.assertEquals(new int[]{2}, main.array(arr1));
-        Assertions.assertEquals(arr11, Main.array(arr1));
+    @MethodSource("getArrayThree")
+    void chekingArray(int[] arr) {
+        Assertions.assertTrue(main.chekingArray(arr));
     }
 
 
-//    @ParameterizedTest
-//    @MethodSource("getArray")
-//    void chekingArray(int[] arr) {
-//        Assertions.assertTrue(chekingArray(arr));
-//    }
 
-    @Test
-    void chekingArray() {
-        Assertions.assertAll(
-                () -> {
-                    Assertions.assertTrue(main.chekingArray(new int[]{1, 2, 1, 1, 2}));
-                },
-                () -> {
-                    Assertions.assertFalse(main.chekingArray(new int[]{-1, 2, 2, 2, 2}));
-                },
-                () -> {
-                    Assertions.assertTrue(main.chekingArray(new int[]{1, 2, 1, 2, 2}));
-                }
-        );
+
+
+
+
+    public static Stream<Arguments> getArrayFour() {
+        List<Arguments> arr = new ArrayList<>();
+        arr.add(Arguments.of(new int[]{2, 2, 2, 2, 2}));
+        arr.add(Arguments.of(new int[]{2, 2, 2, 2, -1}));
+        arr.add(Arguments.of(new int[]{-1, 2, 2, 2, 2}));
+        arr.add(Arguments.of( new int[]{1, 1, 1, 1, 1}));
+        return arr.stream();
     }
+
+    @ParameterizedTest
+    @MethodSource("getArrayFour")
+    void chekingArr(int[] arr) {
+        Assertions.assertFalse(main.chekingArray(arr));
+    }
+
+
 
 
 }
