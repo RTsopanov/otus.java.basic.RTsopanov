@@ -27,11 +27,10 @@ public class Box<T extends Fruit> {
     }
 
 
+
+
     public boolean compare(Box<?> box) {
-                if (this.fruits.getFirst().weight == box.fruits.getFirst().weight) {
-            return true;
-        }
-        return false;
+        return weight() == box.weight();
     }
 
 
@@ -40,9 +39,10 @@ public class Box<T extends Fruit> {
         for (T fruit : fruits) {
             wei += fruit.weight;
         }
-        System.out.println(wei);
         return wei;
     }
+
+
 
 
     @Override
