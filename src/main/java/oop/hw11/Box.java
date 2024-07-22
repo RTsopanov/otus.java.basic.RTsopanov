@@ -3,7 +3,7 @@ package oop.hw11;
 
 import java.util.List;
 
-public class Box<T extends Fruit>{
+public class Box<T extends Fruit> {
 
 
     private List<T> fruits;
@@ -27,25 +27,22 @@ public class Box<T extends Fruit>{
     }
 
 
-
-//    public boolean compare(T box) {
-//        int sum = this.fruits.getFirst().getWeightFruits() - box;
-//
-//        return sum;
-//    }
-//
-//
-//
-//    public int weight() {
-//        int wei = 0;
-//        for (T fruit : fruits) {
-//            wei += fruit.getWeightFruits();
-//        }
-//        System.out.println(wei);
-//        return wei;
-//    }
+    public boolean compare(Box<?> box) {
+                if (this.fruits.getFirst().weight == box.fruits.getFirst().weight) {
+            return true;
+        }
+        return false;
+    }
 
 
+    public int weight() {
+        int wei = 0;
+        for (T fruit : fruits) {
+            wei += fruit.weight;
+        }
+        System.out.println(wei);
+        return wei;
+    }
 
 
     @Override
@@ -53,6 +50,8 @@ public class Box<T extends Fruit>{
         return
                 "fruits= " + fruits;
     }
+
+
 }
 
 

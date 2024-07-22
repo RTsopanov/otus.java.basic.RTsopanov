@@ -2,14 +2,8 @@ package oop.hw11;
 
 public class Fruit {
 
-    private int weightFruits;
+     int weight;
 
 
-    public int getWeightFruits() {
-        return weightFruits;
-    }
 
-    public void setWeightFruits(int weightFruits) {
-        this.weightFruits = weightFruits;
-    }
 }

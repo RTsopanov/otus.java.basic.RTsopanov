@@ -1,18 +1,9 @@
 package oop.hw11;
 
 public class Orange extends Fruit {
-    private int weightOrange;
 
-    public Orange(int weight1) {
-        this.weightOrange = weight1;
+    public Orange(int weight) {
+        this.weight = weight;
     }
 
-
-    public int getWeightOrange() {
-        return weightOrange;
-    }
-
-    public void setWeightOrange(int weightOrange) {
-        this.weightOrange = weightOrange;
-    }
 }
