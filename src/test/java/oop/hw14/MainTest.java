@@ -29,6 +29,13 @@ class MainTest {
 
 
 
+    @Test
+    public void array(){
+        Assertions.assertArrayEquals(new int[]{2}, main.array(new int[]{1, 2 ,1, 1, 2}));
+        Assertions.assertArrayEquals(new int[]{2, 2, 2}, main.array(new int[]{2, 1, 2, 2, 2}));
+    }
+
+
     public static Stream<Arguments> getArray() {
         List<Arguments> arr = new ArrayList<>();
         arr.add(Arguments.of(new int[]{2}, new int[]{1, 2, 1, 1, 2}));
@@ -42,9 +49,6 @@ class MainTest {
     void array(int[] res, int[] arr) {
         Assertions.assertArrayEquals(res, main.array(arr));
     }
-
-
-
 
 
     public static Stream<Arguments> getArrayTwo() {
@@ -67,6 +71,16 @@ class MainTest {
 
 
 
+
+
+
+    @Test
+    public void chekingArray(){
+        Assertions.assertEquals(true,main.chekingArray(new int[]{1, 1, 2, 2, 2}));
+        Assertions.assertEquals(true,main.chekingArray(new int[]{1, 1, 2, 1, 2}));
+    }
+
+
     public static Stream<Arguments> getArrayThree() {
         List<Arguments> arr = new ArrayList<>();
         arr.add(Arguments.of(new int[]{1, 2, 1, 1, 2}));
@@ -80,11 +94,6 @@ class MainTest {
     void chekingArray(int[] arr) {
         Assertions.assertTrue(main.chekingArray(arr));
     }
-
-
-
-
-
 
 
     public static Stream<Arguments> getArrayFour() {
