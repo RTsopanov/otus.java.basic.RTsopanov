@@ -19,39 +19,55 @@ public class HttpServer {
     }
 
     public void start() {
-        int quantityThread = 10;
 
-//        while(quantityThread == quantityThread){
             ExecutorService service = Executors.newFixedThreadPool(2);
 
 
                 try (ServerSocket serverSocket = new ServerSocket(port)) {
                     System.out.println("Сервер запущен на порту: " + port);
+
+
                     while (true) {
-                        service.execute(() -> {
                         try (Socket socket = serverSocket.accept()) {
-                            System.out.println("Клиент подключился");
+
+                            if(socket.isClosed()) {
+                                service.execute(() -> {
+                                    byte[] buffer = new byte[8192];
+                                    int n = 0;
+                                    try {
+                                        n = socket.getInputStream().read(buffer);
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                    String rawRequest = new String(buffer, 0, n);
+                                    if(n < 1){
+                                        return;
+                                    }
+                                    HttpRequest request = new HttpRequest(rawRequest);
+                                    request.printInfo(true);
+                                    try {
+                                        dispatcher.execute(request, socket.getOutputStream());
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                });
+                            }
+
+
                             byte[] buffer = new byte[8192];
                             int n = socket.getInputStream().read(buffer);
                             String rawRequest = new String(buffer, 0, n);
+                            if(n < 1){
+                                continue;
+                            }
                             HttpRequest request = new HttpRequest(rawRequest);
                             request.printInfo(true);
                             dispatcher.execute(request, socket.getOutputStream());
-                        } catch (IOException e) {
-                            e.printStackTrace();
                         }
-                        });
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-
-//        }
-
-
-
-
 
     }
 
