@@ -1,9 +1,7 @@
-package oop.hw15_2;
+package oop.hw15_2.processors;
 
-import com.google.gson.Gson;
-import oop.hw15_2.app.Item;
+import oop.hw15_2.HttpRequest;
 import oop.hw15_2.app.ItemsRepository;
-import oop.hw15_2.processors.RequestProcessor;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -22,8 +20,7 @@ public class DeleteItemProcessor implements RequestProcessor {
 
 @Override
     public void execute(HttpRequest request, OutputStream out) throws IOException {
-        Long id = Long.valueOf(parseInt(request.getBody()));
-        itemsRepository.delete(id);
+        itemsRepository.delete(request.getId());
     }
 }
 

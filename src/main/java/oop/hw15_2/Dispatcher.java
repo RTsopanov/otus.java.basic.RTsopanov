@@ -19,7 +19,7 @@ public class Dispatcher {
     private RequestProcessor defaultNotFoundRequestProcessor;
     private RequestProcessor defaultInternalServerErrorProcessor;
     private ItemsRepository itemsRepository;
-    Logger logger = LogManager.getLogger(Dispatcher.class.getName());
+    private static final Logger logger = LogManager.getLogger(Dispatcher.class.getName());
 
 
     public Dispatcher() {

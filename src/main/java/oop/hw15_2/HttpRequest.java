@@ -10,18 +10,21 @@ public class HttpRequest {
     private String rawRequest;
     private String uri;
     private HttpMethod method;
+    private Long id;
     private Map<String, String> parameters;
     private LinkedHashMap<String, String> heading;
     private String body;
-    Logger logger = LogManager.getLogger(HttpRequest.class.getName());
+    private static final Logger logger = LogManager.getLogger(HttpRequest.class.getName());
+
+    public Long getId() {
+        return id;
+    }
 
     public String getRoutingKey() {
         return method + " " + uri;
     }
 
-    public String getUri() {
-        return uri;
-    }
+
 
     public String getBody() {
         return body;
@@ -58,31 +61,35 @@ public class HttpRequest {
             );
         }
         if (method == HttpMethod.DELETE) {
+            int s = rawRequest.indexOf("=");
+            int t = rawRequest.indexOf(" H");
+            this.id = Long.valueOf(rawRequest.substring(s + 1, t));
+
+
             String bod = rawRequest.substring(rawRequest.indexOf("\"id\": ") + 6);
             String[] bodArr = bod.split("\r\n");
             this.body = bodArr[0];
-        }
-
-
-        this.heading = new LinkedHashMap<>();
-        int sim = rawRequest.indexOf("\r\n");
-        int sim2 = rawRequest.indexOf(": ", sim);
-        int sim3 = rawRequest.indexOf("\r\n", sim2);
-        String str = rawRequest.substring(sim + 1, sim2);
-        String str2 = rawRequest.substring(sim2 + 2, sim3);
-        heading.put(str, str2);
-        rawRequest = rawRequest.substring(sim3 + 1, rawRequest.length());
-
-        for (int i = 0; i < rawRequest.length(); i++) {
-            sim = rawRequest.indexOf(0);
-            sim2 = rawRequest.indexOf(": ", sim);
-            sim3 = rawRequest.indexOf("\r\n", sim2);
-            str = rawRequest.substring(sim + 1, sim2);
-            str2 = rawRequest.substring(sim2 + 2, sim3);
+            this.heading = new LinkedHashMap<>();
+            int sim = rawRequest.indexOf("\r\n");
+            int sim2 = rawRequest.indexOf(": ", sim);
+            int sim3 = rawRequest.indexOf("\r\n", sim2);
+            String str = rawRequest.substring(sim + 1, sim2);
+            String str2 = rawRequest.substring(sim2 + 2, sim3);
             heading.put(str, str2);
             rawRequest = rawRequest.substring(sim3 + 1, rawRequest.length());
+
+            for (int i = 0; i < rawRequest.length(); i++) {
+                sim = rawRequest.indexOf(0);
+                sim2 = rawRequest.indexOf(": ", sim);
+                sim3 = rawRequest.indexOf("\r\n", sim2);
+                str = rawRequest.substring(sim + 1, sim2);
+                str2 = rawRequest.substring(sim2 + 2, sim3);
+                heading.put(str, str2);
+                rawRequest = rawRequest.substring(sim3 + 1, rawRequest.length());
+            }
+            logger.info("heading: " + heading);
         }
-        logger.info("heading: " + heading);
+
 
     }
 
@@ -96,11 +103,12 @@ public class HttpRequest {
     }
 
     public void printInfo(boolean showRawRequest) {
-        System.out.println("uri: " + uri);
-        System.out.println("method: " + method);
-        System.out.println("body: " + body);
+        logger.info("uri: " + uri);
+        logger.info("method: " + method);
+        logger.info("body: " + body);
+
         if (showRawRequest) {
-            logger.info(rawRequest);
+            logger.error(rawRequest);
         }
     }
 }

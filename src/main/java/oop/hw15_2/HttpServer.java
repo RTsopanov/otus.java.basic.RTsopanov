@@ -14,7 +14,7 @@ import java.util.concurrent.Executors;
 public class HttpServer {
     private int port;
     private Dispatcher dispatcher;
-    Logger logger = LogManager.getLogger(HttpServer.class.getName());
+    private static final Logger logger = LogManager.getLogger(HttpServer.class.getName());
 
     public HttpServer(int port) {
         this.port = port;

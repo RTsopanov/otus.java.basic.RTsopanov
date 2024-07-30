@@ -15,14 +15,11 @@ public class CreateNewItemProcessor implements RequestProcessor {
     private ItemsRepository itemsRepository;
 
 
-    Logger logger = LogManager.getLogger(CreateNewItemProcessor.class.getName());
+    private static final Logger logger = LogManager.getLogger(CreateNewItemProcessor.class.getName());
 
     public CreateNewItemProcessor(ItemsRepository itemsRepository) {
         this.itemsRepository = itemsRepository;
     }
-
-
-
 
 
     @Override

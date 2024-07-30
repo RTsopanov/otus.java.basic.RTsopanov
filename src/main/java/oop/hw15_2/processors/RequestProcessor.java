@@ -7,4 +7,6 @@ import java.io.OutputStream;
 
 public interface RequestProcessor {
     void execute(HttpRequest request, OutputStream out) throws IOException;
+
+
 }

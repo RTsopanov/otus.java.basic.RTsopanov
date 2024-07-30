@@ -5,11 +5,14 @@ import oop.hw15_2.*;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class CalculatorRequestProcessor implements RequestProcessor {
-    Logger logger = LogManager.getLogger(CalculatorRequestProcessor.class.getName());
+    private static final Logger logger = LogManager.getLogger(CalculatorRequestProcessor.class.getName());
+
+
     @Override
     public void execute(HttpRequest request, OutputStream out) throws IOException {
         if (!request.containsParameter("a")) {
