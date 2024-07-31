@@ -19,7 +19,7 @@
         <!-- В Root level настраивается общий уровень логов  -->
         <Root level="Info">
             <AppenderRef ref="STDOUT"/>
-            <AppenderRef ref="FILE"/>
+<!--            <AppenderRef ref="FILE"/>-->
         </Root>
         <!--  В Logger name настраивается отдельные уровень логов для записи в файл и в консоль   -->
         <!--         <Logger name="ru.ozzyfrost.logging" level="Error"/> -->
