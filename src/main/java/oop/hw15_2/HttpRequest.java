@@ -12,7 +12,7 @@ public class HttpRequest {
     private HttpMethod method;
     private Long id;
     private Map<String, String> parameters;
-    private LinkedHashMap<String, String> heading;
+    private Map<String, String> heading;
     private String body;
     private static final Logger logger = LogManager.getLogger(HttpRequest.class.getName());
 
@@ -33,6 +33,7 @@ public class HttpRequest {
     public HttpRequest(String rawRequest) {
         this.rawRequest = rawRequest;
         this.parse();
+
     }
 
 
@@ -69,7 +70,7 @@ public class HttpRequest {
             String bod = rawRequest.substring(rawRequest.indexOf("\"id\": ") + 6);
             String[] bodArr = bod.split("\r\n");
             this.body = bodArr[0];
-            this.heading = new LinkedHashMap<>();
+            this.heading = new HashMap<>();
             int sim = rawRequest.indexOf("\r\n");
             int sim2 = rawRequest.indexOf(": ", sim);
             int sim3 = rawRequest.indexOf("\r\n", sim2);
@@ -102,13 +103,11 @@ public class HttpRequest {
         return parameters.get(key);
     }
 
-    public void printInfo(boolean showRawRequest) {
+    public void printInfo() {
         logger.info("uri: " + uri);
         logger.info("method: " + method);
         logger.info("body: " + body);
+            logger.debug(rawRequest);
 
-        if (showRawRequest) {
-            logger.error(rawRequest);
-        }
     }
 }

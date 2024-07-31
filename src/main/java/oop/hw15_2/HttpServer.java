@@ -43,7 +43,7 @@ public class HttpServer {
                                 return;
                             }
                             HttpRequest request = new HttpRequest(rawRequest);
-                            request.printInfo(true);
+                            request.printInfo();
                             try {
                                 dispatcher.execute(request, socket.getOutputStream());
                             } catch (IOException e) {
@@ -60,7 +60,7 @@ public class HttpServer {
                     }
                     String rawRequest = new String(buffer, 0, n);
                     HttpRequest request = new HttpRequest(rawRequest);
-                    request.printInfo(true);
+                    request.printInfo();
                     dispatcher.execute(request, socket.getOutputStream());
                 }
             }
