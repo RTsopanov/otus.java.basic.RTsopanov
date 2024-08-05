@@ -93,14 +93,12 @@ public class HttpRequest {
             int t = rawRequest.indexOf(" H");
             this.id = Long.valueOf(rawRequest.substring(s + 1, t));
 
-            int indexOne = body.indexOf("\":");
-            int indexTwo = body.indexOf("\",");
-            this.title = body.substring(indexOne + 3, indexTwo);
-            int indexThree = body.indexOf("price") + 7 ;
-            int indexFour = body.indexOf("}") -2 ;
-            this.price =  BigDecimal.valueOf(Long.parseLong(body.substring(indexThree , indexFour).strip()));
-            //  TODO Заменить sout на logger
-            System.out.println(title + " " + price);
+
+            System.out.println(rawRequest);
+
+
+
+
 
 
             String bod = rawRequest.substring(rawRequest.indexOf("\"id\": ") + 6);

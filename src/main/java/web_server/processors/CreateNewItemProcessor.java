@@ -53,14 +53,12 @@ public class CreateNewItemProcessor implements RequestProcessor {
     @Override
     public void execute(HttpRequest request, OutputStream out) throws IOException {
         try {
-            Gson gson = new Gson();
            itemDB.add(request);
-            String itemJson = gson.toJson(itemDB);
             String response = "" +
-                    "HTTP/1.1 201 Created\r\n" +
-                    "Content-Type: application/json\r\n" +
+                    "HTTP/1.1 200 OK\r\n" +
+                    "Content-Type: text/html\r\n" +
                     "\r\n" +
-                    itemJson;
+                    "<html><body><h1>Item created</h1></body></html>";
             out.write(response.getBytes(StandardCharsets.UTF_8));
         } catch (JsonParseException e) {
             e.printStackTrace();

@@ -1,6 +1,7 @@
 package web_server.processors;
 
 import web_server.HttpRequest;
+import web_server.app.ItemDB;
 import web_server.app.ItemsRepository;
 
 import java.io.IOException;
@@ -9,18 +10,23 @@ import java.nio.charset.StandardCharsets;
 
 public class DeleteItemProcessor implements RequestProcessor {
     private ItemsRepository itemsRepository;
+    private ItemDB itemDB;
 
 
-    public DeleteItemProcessor( ItemsRepository itemsRepository) {
+    public DeleteItemProcessor(ItemsRepository itemsRepository) {
         this.itemsRepository = itemsRepository;
     }
 
+    public DeleteItemProcessor(ItemDB itemDB) {
+        this.itemDB = itemDB;
+    }
 
 
-@Override
+    @Override
     public void execute(HttpRequest request, OutputStream out) throws IOException {
-        itemsRepository.delete(request.getId());
-
+        //TODO Удалить
+//        itemsRepository.delete(request.getId());
+        itemDB.delete(request);
         String response = "" +
                 "HTTP/1.1 200 OK\r\n" +
                 "Content-Type: text/html\r\n" +
