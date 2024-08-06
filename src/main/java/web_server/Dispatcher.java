@@ -35,20 +35,17 @@ public class Dispatcher {
         this.processors.put("GET /calculator", new CalculatorRequestProcessor());
 
 
-
-//        this.processors.put("GET /items", new GetAllItemsProcessor(itemsRepository));
         this.processors.put("GET /items", new GetAllItemsProcessor(itemDB));
 
 
 
         this.processors.put("POST /items", new CreateNewItemProcessor(itemDB));
         this.processors.put("DELETE /items", new DeleteItemProcessor(itemDB));
-
-
+        this.processors.put("GET /items?id", new GetItemProcessor(itemDB));
 
 //        this.processors.put("POST /items", new CreateNewItemProcessor(itemsRepository));
 //        this.processors.put("DELETE /items", new DeleteItemProcessor(itemsRepository));
-
+//        this.processors.put("GET /items", new GetAllItemsProcessor(itemsRepository));
 
 
         this.defaultNotFoundRequestProcessor = new DefaultNotFoundRequestProcessor();

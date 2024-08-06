@@ -4,11 +4,24 @@ import web_server.HttpRequest;
 import org.apache.logging.log4j.*;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ItemDB {
     private static final Logger logger = LogManager.getLogger(Item.class.getName());
     private static String add;
     private static String delete;
+    private String resul;
+    private List<String> res = new ArrayList<>();
+
+    public List<String> getResult() {
+        return res;
+    }
+
+    public String getResul() {
+        return resul;
+    }
+
 
 
     public void add(HttpRequest request) {
@@ -38,16 +51,43 @@ public class ItemDB {
     }
 
 
-    public void showAllItems() {
-        try {
+    public List<String>  showAllItems() {
+        ResultSet resultSet;
+               try {
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5433/web-server", "postgres", "!Hund111");
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from item;");
+            resultSet = statement.executeQuery("select * from item;");
             while (resultSet.next()) {
-                logger.info(resultSet.getString("title") + " " + resultSet.getString("price"));
+                resul = resultSet.getString("id") + " " + resultSet.getString("title") + " " + resultSet.getString("price");
+                logger.info(resul);
+                res.add(resul);
+
             }
         } catch (SQLException e) {
             logger.error(e);
         }
+        System.out.println(res);
+        return res;
+    }
+
+
+
+    public String showItem(Long id){
+        ResultSet resultSet;
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5433/web-server", "postgres", "!Hund111");
+            Statement statement = connection.createStatement();
+            resultSet = statement.executeQuery("select * from item where id = " + id + ";");
+            while (resultSet.next()) {
+                resul = resultSet.getString("id") + " " + resultSet.getString("title") + " " + resultSet.getString("price");
+            }
+        } catch (SQLException e) {
+            logger.error(e);
+        }
+        if(resul == null){
+            resul = "Товара с таким id не существует";
+            logger.info(resul);
+        }
+        return resul;
     }
 }

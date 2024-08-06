@@ -63,7 +63,18 @@ public class HttpRequest {
         this.uri = rawRequest.substring(startIndex + 1, endIndex);
         this.method = HttpMethod.valueOf(rawRequest.substring(0, startIndex));
         this.parameters = new HashMap<>();
-        if (uri.contains("?")) {
+        if(uri.contains("=")){
+            String[] elements = uri.split("[=]");
+            this.uri = elements[0];
+            this.id = Long.parseLong(elements[1]);
+            System.out.println();
+            System.out.println(id + " @@@@");
+            this.parameters.put(elements[0], elements[1]);
+        }
+
+
+
+        else if (uri.contains("?")) {
             String[] elements = uri.split("[?]");
             this.uri = elements[0];
             String[] keysValues = elements[1].split("&");
@@ -72,6 +83,10 @@ public class HttpRequest {
                 this.parameters.put(keyValue[0], keyValue[1]);
             }
         }
+
+
+
+
         if (method == HttpMethod.POST) {
             this.body = rawRequest.substring(
                     rawRequest.indexOf("\r\n\r\n") + 4
