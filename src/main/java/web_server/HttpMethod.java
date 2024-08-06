@@ -1,5 +1,5 @@
 package web_server;
 
 public enum HttpMethod {
-    GET, POST, DELETE
+    GET, POST, DELETE, PUT
 }

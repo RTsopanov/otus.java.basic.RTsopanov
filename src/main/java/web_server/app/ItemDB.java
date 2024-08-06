@@ -11,6 +11,8 @@ public class ItemDB {
     private static final Logger logger = LogManager.getLogger(Item.class.getName());
     private static String add;
     private static String delete;
+    private static String edit;
+    private ResultSet resultSet;
     private String resul;
     private List<String> res = new ArrayList<>();
 
@@ -52,7 +54,6 @@ public class ItemDB {
 
 
     public List<String>  showAllItems() {
-        ResultSet resultSet;
                try {
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5433/web-server", "postgres", "!Hund111");
             Statement statement = connection.createStatement();
@@ -73,7 +74,6 @@ public class ItemDB {
 
 
     public String showItem(Long id){
-        ResultSet resultSet;
         try {
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5433/web-server", "postgres", "!Hund111");
             Statement statement = connection.createStatement();
@@ -90,4 +90,22 @@ public class ItemDB {
         }
         return resul;
     }
+
+
+
+
+    public void editItem(HttpRequest request) {
+        edit = "update item set title = '" + request.getTitle() + "', price = " + request.getPrice() + " where id = " + request.getId() + ";";
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5433/web-server", "postgres", "!Hund111");
+            Statement statement = connection.createStatement();
+           statement.executeUpdate(edit);
+
+        } catch (SQLException e) {
+            logger.error(e);
+        }
+    }
+
+
+
 }

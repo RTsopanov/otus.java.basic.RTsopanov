@@ -63,18 +63,11 @@ public class HttpRequest {
         this.uri = rawRequest.substring(startIndex + 1, endIndex);
         this.method = HttpMethod.valueOf(rawRequest.substring(0, startIndex));
         this.parameters = new HashMap<>();
-        if(uri.contains("=")){
-            String[] elements = uri.split("[=]");
-            this.uri = elements[0];
-            this.id = Long.parseLong(elements[1]);
-            System.out.println();
-            System.out.println(id + " @@@@");
-            this.parameters.put(elements[0], elements[1]);
-        }
 
 
 
-        else if (uri.contains("?")) {
+
+         if (uri.contains("?")) {
             String[] elements = uri.split("[?]");
             this.uri = elements[0];
             String[] keysValues = elements[1].split("&");
@@ -82,6 +75,14 @@ public class HttpRequest {
                 String[] keyValue = o.split("=");
                 this.parameters.put(keyValue[0], keyValue[1]);
             }
+        }
+
+         //TODO Продолжить с условия
+        if(method == HttpMethod.GET && uri.contains("=")){
+            String[] elements = uri.split("[=]");
+            this.uri = elements[0];
+            this.id = Long.parseLong(elements[1]);
+            this.parameters.put(elements[0], elements[1]);
         }
 
 
@@ -109,13 +110,6 @@ public class HttpRequest {
             this.id = Long.valueOf(rawRequest.substring(s + 1, t));
 
 
-            System.out.println(rawRequest);
-
-
-
-
-
-
             String bod = rawRequest.substring(rawRequest.indexOf("\"id\": ") + 6);
             String[] bodArr = bod.split("\r\n");
             this.body = bodArr[0];
@@ -138,6 +132,30 @@ public class HttpRequest {
                 rawRequest = rawRequest.substring(sim3 + 1, rawRequest.length());
             }
             logger.info("heading: " + heading);
+        }
+
+
+        if(method == HttpMethod.PUT){
+            this.body = rawRequest.substring(
+                    rawRequest.indexOf("\r\n\r\n") + 4);
+            System.out.println(body);
+            int s = body.indexOf("id") + 5;
+            int t = body.indexOf(",\r\n");
+            this.id = Long.valueOf(body.substring(s, t));
+
+            int s2 = body.indexOf("title") + 8;
+            int t2 = body.indexOf("\"", s2) ;
+            this.title = body.substring(s2, t2 );
+
+
+
+
+            int s3 = body.indexOf("price") + 7;
+            int t3 = body.indexOf("\r\n", s3) ;
+            this.price = BigDecimal.valueOf(Long.parseLong(body.substring(s3, t3)));
+            // TODO Удалить sout
+            System.out.println("id " + id + " title " +  title + " price " + price);
+
         }
 
 
