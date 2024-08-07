@@ -54,6 +54,7 @@ public class ItemDB {
 
 
     public List<String>  showAllItems() {
+        res.clear();
                try {
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5433/web-server", "postgres", "!Hund111");
             Statement statement = connection.createStatement();
