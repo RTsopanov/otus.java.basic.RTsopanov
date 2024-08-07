@@ -23,7 +23,6 @@ public class HttpServer {
         ExecutorService service = Executors.newFixedThreadPool(2);
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             logger.info("Сервер запущен на порту: " + port);
-
             while (true) {
                 try (Socket socket = serverSocket.accept()) {
 
@@ -46,7 +45,6 @@ public class HttpServer {
                                 dispatcher.execute(request, socket.getOutputStream());
                             } catch (IOException e) {
                                 logger.error(e);
-
                             }
                         });
                     }

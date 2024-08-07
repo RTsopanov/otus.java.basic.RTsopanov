@@ -12,14 +12,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class GetAllItemsProcessor implements RequestProcessor {
-    // TODO удалить
-//    private ItemsRepository itemsRepository;
     private ItemDB itemDB;
 
-    // TODO удалить
-//    public GetAllItemsProcessor(ItemsRepository itemsRepository) {
-//        this.itemsRepository = itemsRepository;
-//    }
 
     public GetAllItemsProcessor(ItemDB itemDB) {
         this.itemDB = itemDB;

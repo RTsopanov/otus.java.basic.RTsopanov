@@ -2,6 +2,7 @@ package web_server;
 
 
 import com.google.gson.Gson;
+import web_server.app.FileRead;
 import web_server.app.ItemsRepository;
 import web_server.app.ItemDB;
 import web_server.processors.*;
@@ -23,11 +24,12 @@ public class Dispatcher {
     //TODO
     private ItemsRepository itemsRepository;
     private ItemDB itemDB;
-
+    private FileRead file;
 
     public Dispatcher() {
         this.itemsRepository = new ItemsRepository();
         this.itemDB = new ItemDB();
+        this.file = new FileRead();
 
         this.processors = new HashMap<>();
         this.processors.put("GET /", new HelloWorldRequestProcessor());
@@ -36,15 +38,11 @@ public class Dispatcher {
 
 
         this.processors.put("GET /items", new GetAllItemsProcessor(itemDB));
-
-
-
+        this.processors.put("GET /items?id", new GetItemProcessor(itemDB));
         this.processors.put("POST /items", new CreateNewItemProcessor(itemDB));
         this.processors.put("DELETE /items", new DeleteItemProcessor(itemDB));
-        this.processors.put("GET /items?id", new GetItemProcessor(itemDB));
-
         this.processors.put("PUT /items", new PutItemProcessor(itemDB));
-
+        this.processors.put("GET .txt", new readFileProcessor(file));
 
 
 //        this.processors.put("POST /items", new CreateNewItemProcessor(itemsRepository));

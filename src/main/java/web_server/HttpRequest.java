@@ -18,18 +18,21 @@ public class HttpRequest {
     private String body;
     private String title;
     private BigDecimal price;
+    private String fileName;
+
     private static final Logger logger = LogManager.getLogger(HttpRequest.class.getName());
 
     public String getTitle() {
         return title;
     }
 
-
+    public String getFileName() {
+        return fileName;
+    }
 
     public BigDecimal getPrice() {
         return price;
     }
-
 
 
     public Long getId() {
@@ -39,7 +42,6 @@ public class HttpRequest {
     public String getRoutingKey() {
         return method + " " + uri;
     }
-
 
 
     public String getBody() {
@@ -65,16 +67,12 @@ public class HttpRequest {
         this.parameters = new HashMap<>();
 
 
-
-
-        if(method == HttpMethod.GET && uri.contains("=")){
+        if (method == HttpMethod.GET && uri.contains("=")) {
             String[] elements = uri.split("[=]");
             this.uri = elements[0];
             this.id = Long.parseLong(elements[1]);
             this.parameters.put(elements[0], elements[1]);
-        }
-
-         else if (uri.contains("?")) {
+        } else if (uri.contains("?")) {
             String[] elements = uri.split("[?]");
             this.uri = elements[0];
             String[] keysValues = elements[1].split("&");
@@ -84,10 +82,13 @@ public class HttpRequest {
             }
         }
 
-         //TODO Продолжить с условия
 
-
-
+        if (method == HttpMethod.GET && uri.contains(".txt")) {
+            this.uri = ".txt";
+            int indexOne = rawRequest.indexOf(" /");
+            int indexTwo = rawRequest.indexOf(" ", indexOne + 1);
+            this.fileName = rawRequest.substring(indexOne + 2, indexTwo);
+        }
 
 
         if (method == HttpMethod.POST) {
@@ -97,13 +98,11 @@ public class HttpRequest {
             int indexOne = body.indexOf("\":");
             int indexTwo = body.indexOf("\",");
             this.title = body.substring(indexOne + 4, indexTwo);
-            int indexThree = body.indexOf("price") + 7 ;
-            int indexFour = body.indexOf("}") -2 ;
-            this.price =  BigDecimal.valueOf(Long.parseLong(body.substring(indexThree , indexFour).strip()));
-            //  TODO Заменить sout на logger
-            System.out.println(title + " " + price);
-        }
+            int indexThree = body.indexOf("price") + 7;
+            int indexFour = body.indexOf("}") - 2;
+            this.price = BigDecimal.valueOf(Long.parseLong(body.substring(indexThree, indexFour).strip()));
 
+        }
 
 
         if (method == HttpMethod.DELETE) {
@@ -137,21 +136,19 @@ public class HttpRequest {
         }
 
 
-        if(method == HttpMethod.PUT){
+        if (method == HttpMethod.PUT) {
             this.body = rawRequest.replaceAll(" ", "");
             int s = body.indexOf("id") + 4;
             int t = body.indexOf(",\r\n");
             this.id = Long.valueOf(body.substring(s, t));
 
             int s2 = body.indexOf("title") + 8;
-            int t2 = body.indexOf("\"", s2) ;
-            this.title = body.substring(s2, t2 );
+            int t2 = body.indexOf("\"", s2);
+            this.title = body.substring(s2, t2);
 
             int s3 = body.indexOf("price") + 7;
-            int t3 = body.indexOf("\r\n", s3) ;
+            int t3 = body.indexOf("\r\n", s3);
             this.price = BigDecimal.valueOf(Long.parseLong(body.substring(s3, t3)));
-            // TODO Удалить sout
-            System.out.println("id " + id + " title " +  title + " price " + price);
         }
 
 
@@ -170,7 +167,7 @@ public class HttpRequest {
         logger.info("uri: " + uri);
         logger.info("method: " + method);
         logger.info("body: " + body);
-            logger.debug(rawRequest);
+        logger.debug(rawRequest);
 
     }
 }

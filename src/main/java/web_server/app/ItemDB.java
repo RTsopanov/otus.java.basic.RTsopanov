@@ -68,7 +68,6 @@ public class ItemDB {
         } catch (SQLException e) {
             logger.error(e);
         }
-        System.out.println(res);
         return res;
     }
 

@@ -17,9 +17,7 @@ public class PutItemProcessor implements RequestProcessor {
 
     @Override
     public void execute(HttpRequest request, OutputStream out) throws IOException {
-//        Gson gson = new Gson();
         itemDB.editItem(request);
-//        String itemsJson = gson.toJson(itemDB.getResul());
         String response = "" +
                 "HTTP/1.1 200 OK\r\n" +
                 "Content-Type: text/html\r\n" +
