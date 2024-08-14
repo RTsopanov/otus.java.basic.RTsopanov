@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.math.BigDecimal;
+import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,6 +20,8 @@ public class HttpRequest {
     private String title;
     private BigDecimal price;
     private String fileName;
+    private int startIndex;
+    private int endIndex;
 
     private static final Logger logger = LogManager.getLogger(HttpRequest.class.getName());
 
@@ -60,34 +63,49 @@ public class HttpRequest {
 
 
     private void parse() {
-        int startIndex = rawRequest.indexOf(' ');
-        int endIndex = rawRequest.indexOf(' ', startIndex + 1);
+        startIndex = rawRequest.indexOf(' ');
+        endIndex = rawRequest.indexOf(' ', startIndex + 1);
         this.uri = rawRequest.substring(startIndex + 1, endIndex);
         this.method = HttpMethod.valueOf(rawRequest.substring(0, startIndex));
         this.parameters = new HashMap<>();
 
 
         if (method == HttpMethod.GET && uri.contains("=")) {
-            String[] elements = uri.split("[=]");
-            this.uri = elements[0];
-            this.id = Long.parseLong(elements[1]);
-            this.parameters.put(elements[0], elements[1]);
+
+//      TODO удалить коммент 76-79
+//            String[] elements = uri.split("[=]");
+//            this.uri = elements[0];
+//            this.id = Long.parseLong(elements[1]);
+//            this.parameters.put(elements[0], elements[1]);
+
+
+            this.id = Long.parseLong(uri.substring(uri.indexOf("=") + 1, uri.length()));
+            this.uri = uri.substring(uri.indexOf("\\") + 1, uri.indexOf("=", startIndex + 1));
+            this.parameters.put(uri, id.toString());
+
+
         } else if (uri.contains("?")) {
-            String[] elements = uri.split("[?]");
-            this.uri = elements[0];
-            String[] keysValues = elements[1].split("&");
-            for (String o : keysValues) {
-                String[] keyValue = o.split("=");
-                this.parameters.put(keyValue[0], keyValue[1]);
-            }
+
+//  TODO удалить коммент 94-100
+//            String[] elements = uri.split("[?]");
+//            this.uri = elements[0];
+//            String[] keysValues = elements[1].split("&");
+//            for (String o : keysValues) {
+//                String[] keyValue = o.split("=");
+//                this.parameters.put(keyValue[0], keyValue[1]);
+//            }
+
+
+            this.id = Long.parseLong(uri.substring(uri.indexOf("=") + 1, uri.length()));
+            this.parameters.put(uri.substring(uri.indexOf("?") + 1, uri.indexOf("=")), id.toString());
+            this.uri = uri.substring(0, uri.indexOf("?"));
+
         }
 
 
         if (method == HttpMethod.GET && uri.contains(".txt")) {
             this.uri = ".txt";
-            int indexOne = rawRequest.indexOf(" /");
-            int indexTwo = rawRequest.indexOf(" ", indexOne + 1);
-            this.fileName = rawRequest.substring(indexOne + 2, indexTwo);
+            this.fileName = rawRequest.substring(rawRequest.indexOf(" /") + 2, rawRequest.indexOf(" ", rawRequest.indexOf(" /") + 1));
         }
 
 
@@ -95,25 +113,21 @@ public class HttpRequest {
             this.body = rawRequest.substring(
                     rawRequest.indexOf("\r\n\r\n") + 4
             );
-            int indexOne = body.indexOf("\":");
-            int indexTwo = body.indexOf("\",");
-            this.title = body.substring(indexOne + 4, indexTwo);
-            int indexThree = body.indexOf("price") + 7;
-            int indexFour = body.indexOf("}") - 2;
-            this.price = BigDecimal.valueOf(Long.parseLong(body.substring(indexThree, indexFour).strip()));
+//            int indexOne = body.indexOf("\":");
+//            int indexTwo = body.indexOf("\",");
+            this.title = body.substring(body.indexOf("\":") + 4, body.indexOf("\","));
+//            int indexThree = body.indexOf("price") + 7;
+//            int indexFour = body.indexOf("}") - 2;
+            this.price = BigDecimal.valueOf(Long.parseLong(body.substring(body.indexOf("price") + 7, body.indexOf("}") - 2).strip()));
 
         }
 
 
         if (method == HttpMethod.DELETE) {
-            int s = rawRequest.indexOf("=");
-            int t = rawRequest.indexOf(" H");
-            this.id = Long.valueOf(rawRequest.substring(s + 1, t));
+            this.id = Long.valueOf(rawRequest.substring(rawRequest.indexOf("=") + 1, rawRequest.indexOf(" H")));
+            this.body = rawRequest.substring(rawRequest.indexOf("/") + 1, rawRequest.indexOf(" H"));
 
 
-            String bod = rawRequest.substring(rawRequest.indexOf("\"id\": ") + 6);
-            String[] bodArr = bod.split("\r\n");
-            this.body = bodArr[0];
             this.heading = new HashMap<>();
             int sim = rawRequest.indexOf("\r\n");
             int sim2 = rawRequest.indexOf(": ", sim);
@@ -122,7 +136,6 @@ public class HttpRequest {
             String str2 = rawRequest.substring(sim2 + 2, sim3);
             heading.put(str, str2);
             rawRequest = rawRequest.substring(sim3 + 1, rawRequest.length());
-
             for (int i = 0; i < rawRequest.length(); i++) {
                 sim = rawRequest.indexOf(0);
                 sim2 = rawRequest.indexOf(": ", sim);
@@ -132,23 +145,16 @@ public class HttpRequest {
                 heading.put(str, str2);
                 rawRequest = rawRequest.substring(sim3 + 1, rawRequest.length());
             }
+
             logger.info("heading: " + heading);
         }
 
 
         if (method == HttpMethod.PUT) {
             this.body = rawRequest.replaceAll(" ", "");
-            int s = body.indexOf("id") + 4;
-            int t = body.indexOf(",\r\n");
-            this.id = Long.valueOf(body.substring(s, t));
-
-            int s2 = body.indexOf("title") + 8;
-            int t2 = body.indexOf("\"", s2);
-            this.title = body.substring(s2, t2);
-
-            int s3 = body.indexOf("price") + 7;
-            int t3 = body.indexOf("\r\n", s3);
-            this.price = BigDecimal.valueOf(Long.parseLong(body.substring(s3, t3)));
+            this.id = Long.valueOf(body.substring(body.indexOf("id") + 4, body.indexOf(",\r\n")));
+            this.title = body.substring(body.indexOf("title") + 8, body.indexOf("\"", body.indexOf("title") + 8));
+            this.price = BigDecimal.valueOf(Long.parseLong(body.substring(body.indexOf("price") + 7, body.indexOf("\r\n", body.indexOf("price") + 7))));
         }
 
 
