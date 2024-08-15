@@ -21,9 +21,5 @@ public class Application {
 //        System.getProperties().put("port 3", 8187);
 //        new HttpServer((Integer) System.getProperties().getOrDefault("port 3", 8888)).start();
 
-
-
-
     }
-
 }

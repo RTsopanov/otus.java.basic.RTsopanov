@@ -21,7 +21,7 @@ public class Dispatcher {
     private RequestProcessor defaultInternalServerErrorProcessor;
     private static final Logger logger = LogManager.getLogger(Dispatcher.class.getName());
 
-    //TODO
+
     private ItemsRepository itemsRepository;
     private ItemDB itemDB;
     private FileRead file;
@@ -44,10 +44,6 @@ public class Dispatcher {
         this.processors.put("PUT /items", new PutItemProcessor(itemDB));
         this.processors.put("GET .txt", new readFileProcessor(file));
 
-
-//        this.processors.put("POST /items", new CreateNewItemProcessor(itemsRepository));
-//        this.processors.put("DELETE /items", new DeleteItemProcessor(itemsRepository));
-//        this.processors.put("GET /items", new GetAllItemsProcessor(itemsRepository));
 
 
         this.defaultNotFoundRequestProcessor = new DefaultNotFoundRequestProcessor();
