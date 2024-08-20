@@ -13,28 +13,37 @@ public class ItemDB {
     private static String delete;
     private static String edit;
     private ResultSet resultSet;
-    private String resul;
+
     private List<String> res = new ArrayList<>();
 
     public List<String> getResult() {
         return res;
     }
+    Connection connection;
+    Statement statement;
 
-    public String getResul() {
-        return resul;
+    public ItemDB()
+    {
+        try {
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5433/web-server", "postgres", "!Hund111");
+            statement = connection.createStatement();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
+
+
+
 
 
 
     public void add(HttpRequest request) {
         add = "insert into item(title, price) values ('" + request.getTitle() + "', " + request.getPrice() + ");";
         try {
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5433/web-server", "postgres", "!Hund111");
-            Statement statement = connection.createStatement();
             statement.executeUpdate(add);
             logger.info("\nТовар успешо добавлен в БД\n");
         } catch (SQLException e) {
-            logger.error(e);
+            logger.debug("Проверьте соединение с БД", e);
         }
     }
 
@@ -43,30 +52,26 @@ public class ItemDB {
     public void delete(HttpRequest request) {
         delete = "delete from item where id = " + request.getId() + ";";
         try {
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5433/web-server", "postgres", "!Hund111");
-            Statement statement = connection.createStatement();
             statement.executeUpdate(delete);
             logger.info("\nТовар успешо удален из БД\n");
         } catch (SQLException e) {
-            logger.error(e);
+            logger.debug("Проверьте соединение с БД", e);
         }
     }
 
 
     public List<String>  showAllItems() {
+        String result= null;
         res.clear();
                try {
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5433/web-server", "postgres", "!Hund111");
-            Statement statement = connection.createStatement();
             resultSet = statement.executeQuery("select * from item;");
             while (resultSet.next()) {
-                resul = resultSet.getString("id") + " " + resultSet.getString("title") + " " + resultSet.getString("price");
-                logger.info(resul);
-                res.add(resul);
-
+                result = resultSet.getString("id") + " " + resultSet.getString("title") + " " + resultSet.getString("price");
+                logger.info(result);
+                res.add(result);
             }
         } catch (SQLException e) {
-            logger.error(e);
+                   logger.debug("Проверьте соединение с БД", e);
         }
         return res;
     }
@@ -74,21 +79,20 @@ public class ItemDB {
 
 
     public String showItem(Long id){
+        String result = null;
         try {
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5433/web-server", "postgres", "!Hund111");
-            Statement statement = connection.createStatement();
             resultSet = statement.executeQuery("select * from item where id = " + id + ";");
             while (resultSet.next()) {
-                resul = resultSet.getString("id") + " " + resultSet.getString("title") + " " + resultSet.getString("price");
+                result = resultSet.getString("id") + " " + resultSet.getString("title") + " " + resultSet.getString("price");
             }
         } catch (SQLException e) {
-            logger.error(e);
+            logger.debug("Проверьте соединение с БД", e);
         }
-        if(resul == null){
-            resul = "Товара с таким id не существует";
-            logger.info(resul);
+        if(result == null){
+            result = "Товара с таким id не существует";
+            logger.info(result);
         }
-        return resul;
+        return result;
     }
 
 
@@ -97,12 +101,9 @@ public class ItemDB {
     public void editItem(HttpRequest request) {
         edit = "update item set title = '" + request.getTitle() + "', price = " + request.getPrice() + " where id = " + request.getId() + ";";
         try {
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5433/web-server", "postgres", "!Hund111");
-            Statement statement = connection.createStatement();
            statement.executeUpdate(edit);
-
         } catch (SQLException e) {
-            logger.error(e);
+            logger.debug("Проверьте соединение с БД", e);
         }
     }
 

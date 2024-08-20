@@ -1,9 +1,7 @@
 package web_server;
 
 
-import java.beans.JavaBean;
-import java.util.jar.JarEntry;
-
+import web_server.HttpServer;
 
 public class Application {
 
@@ -12,9 +10,7 @@ public class Application {
         System.getProperties().put("port 1", "8185");
         System.getProperties().put("port 2", "8186");
 
-        System.out.println(System.getProperty("user.name"));
         new HttpServer(Integer.parseInt(System.getProperty("port 2"))).start();
-
 
 
 // TODO вариант №2 с использованием System.getProperty

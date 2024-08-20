@@ -2,14 +2,11 @@ package web_server.processors;
 
 import web_server.HttpRequest;
 import web_server.app.ItemDB;
-import web_server.app.ItemsRepository;
-
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 
 public class DeleteItemProcessor implements RequestProcessor {
-    private ItemsRepository itemsRepository;
     private ItemDB itemDB;
 
 

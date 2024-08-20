@@ -4,19 +4,28 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Arrays;
 
 public class FileRead {
-    private String str;
+//    private String str;
     private static final Logger logger = LogManager.getLogger(FileRead.class.getName());
 
-    public String read(String fileName){
-            try(BufferedInputStream buf = new BufferedInputStream(new FileInputStream("static/" + fileName))){
-          str = new String(buf.readAllBytes(), StandardCharsets.UTF_8);
-
-        }catch(IOException e){
-            logger.error(e);
+    public byte[] read(String fileName){
+        byte[] strrr = new byte[2048];
+        try {
+             strrr = Files.readAllBytes(Paths.get("static/" + fileName));
+        } catch (IOException e) {
+            logger.error("Файл не найден", e);
         }
-        return str;
+        System.out.println(Arrays.toString(new String[]{Arrays.toString(strrr)}));
+        return strrr;
     }
+
+
+
+
+
+
 }

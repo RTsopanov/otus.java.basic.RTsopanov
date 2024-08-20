@@ -2,9 +2,7 @@ package web_server;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import java.math.BigDecimal;
-import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,7 +10,7 @@ import java.util.Map;
 public class HttpRequest {
     private String rawRequest;
     private String uri;
-    private HttpMethod method;
+    private web_server.HttpMethod method;
     private Long id;
     private Map<String, String> parameters;
     private Map<String, String> heading;
