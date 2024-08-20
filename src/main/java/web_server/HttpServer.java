@@ -25,29 +25,6 @@ public class HttpServer {
             while (true) {
                 try (Socket socket = serverSocket.accept()) {
 
-                    if (socket.isClosed()) {
-                        service.execute(() -> {
-                            byte[] buffer = new byte[8192];
-                            int n = 0;
-                            try {
-                                n = socket.getInputStream().read(buffer);
-                            } catch (IOException e) {
-                                logger.error(e);
-                            }
-                            String rawRequest = new String(buffer, 0, n);
-                            if (n < 1) {
-                                return;
-                            }
-                            HttpRequest request = new HttpRequest(rawRequest);
-                            request.printInfo();
-                            try {
-                                dispatcher.execute(request, socket.getOutputStream());
-                            } catch (IOException e) {
-                                logger.error(e);
-                            }
-                        });
-                    }
-
                     byte[] buffer = new byte[8192];
                     int n = socket.getInputStream().read(buffer);
                     if (n < 1) {
@@ -60,7 +37,7 @@ public class HttpServer {
                 }
             }
         } catch (IOException e) {
-            logger.error(e);
+            logger.error("Ошибка соединения с клиентом ", e);
         }
     }
 }

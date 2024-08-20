@@ -13,7 +13,7 @@ public class FileRead {
     private static final Logger logger = LogManager.getLogger(FileRead.class.getName());
 
     public byte[] read(String fileName){
-        byte[] strrr = new byte[2048];
+        byte[] strrr = new byte[8192];
         try {
              strrr = Files.readAllBytes(Paths.get("static/" + fileName));
         } catch (IOException e) {

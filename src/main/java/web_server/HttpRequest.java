@@ -84,7 +84,7 @@ public class HttpRequest {
 
         } else if (uri.contains("?")) {
 
-//  TODO удалить коммент 94-100
+//  TODO
 //            String[] elements = uri.split("[?]");
 //            this.uri = elements[0];
 //            String[] keysValues = elements[1].split("&");
@@ -111,13 +111,8 @@ public class HttpRequest {
             this.body = rawRequest.substring(
                     rawRequest.indexOf("\r\n\r\n") + 4
             );
-//            int indexOne = body.indexOf("\":");
-//            int indexTwo = body.indexOf("\",");
             this.title = body.substring(body.indexOf("\":") + 4, body.indexOf("\","));
-//            int indexThree = body.indexOf("price") + 7;
-//            int indexFour = body.indexOf("}") - 2;
             this.price = BigDecimal.valueOf(Long.parseLong(body.substring(body.indexOf("price") + 7, body.indexOf("}") - 2).strip()));
-
         }
 
 
@@ -159,13 +154,6 @@ public class HttpRequest {
     }
 
 
-    public boolean containsParameter(String key) {
-        return parameters.containsKey(key);
-    }
-
-    public String getParameter(String key) {
-        return parameters.get(key);
-    }
 
     public void printInfo() {
         logger.info("uri: " + uri);
